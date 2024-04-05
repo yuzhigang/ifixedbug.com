@@ -62,5 +62,11 @@
     <loc>https://www.ifixedbug.com/search/</loc>
   </url><url>
     <loc>https://www.ifixedbug.com/docs/example/folder_1/text/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/posts/%E5%8A%A8%E6%80%81api%E8%AE%BE%E8%AE%A1/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/categories/%E8%AE%BE%E8%AE%A1/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/</loc>
   </url>
 </urlset>

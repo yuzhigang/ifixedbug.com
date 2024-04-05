@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>动态api设计文档 - iFixedBug.com</title><meta charset="utf-8">
+    <meta name="author" content="Zigzag">
+    <meta name="Robots" content="All">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="windows-Target" content="_top">
+
+    
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../logo.svg" />
+    <link rel="alt" type="application/rss+xml" href=../../index.xml title="iFixedBug.com" />
+    <link rel="stylesheet" href=../../_index.css>
+
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.css" />
+    <link rel="stylesheet" href="https://fonts.loli.net/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
+
+    
+</head><body><div class="LBody" id="start">
+        <aside class="LSide"><header class="header">
+    <div class="logo-wrap">
+        <a class="avatar" href="../../">
+            <div class="mask"></div>
+            <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
+            <img class="avatar" src="../../avatar.png" onerror="this.classList.add('error');this.src='../../img/unknow.svg';">
+        </a>
+        <a class="title" href="../../">
+            <div class="main" ff="title">Zigzag</div>
+            <div class="sub normal cap">赴汤蹈火啊琛哥</div>
+            <div class="sub hover cap">毕生终究一无所成。知天命，尽人事。</div>
+        </a>
+    </div>
+    <nav class="menu dis-select"><a class="nav-item active" href="../../">博客</a><a class="nav-item " href="../../docs/">文档</a><a class="nav-item " href="../../search/">搜索</a><a class="nav-item " href="../../about/">关于</a></nav>
+</header><div class="widgets"><div class="widget search"><widget class="widget-wrapper search">
+    <div class="widget-body">
+        <div class="search-wrapper" id="search">
+            <div class="search-form">
+                <input type="text" class="search-input" id="search-input" placeholder="Search" AUTOCOMPLETE="off" >
+                <svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg>
+            </div>
+        </div>
+    </div>
+    <script>
+        var searchInput = document.getElementById("search-input");
+        searchInput.addEventListener('keydown', (event) => {
+            var inputValue = encodeURIComponent(searchInput.value.trim());
+            if (inputValue && event.keyCode == 13) {
+                window.open(`${window.location.protocol}//${window.location.host}/search?key=${inputValue}`);
+            }
+        });
+    </script>
+</widget></div><div class="widget toc"><widgets class="widget-wrapper toc">
+    <div class="widget-header cap dis-select">
+        <a class="name" href="#">动态api设计文档</a>
+    </div>
+    <div class="widget-body fs14">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本过程">基本过程</a></li>
+    <li><a href="#动态api的返回对象">动态api的返回对象</a></li>
+    <li><a href="#数据库设计">数据库设计</a></li>
+    <li><a href="#接口设计">接口设计</a></li>
+    <li><a href="#endpoint设计">Endpoint设计</a></li>
+  </ul>
+</nav>
+    </div>
+</widgets></div></div>
+<footer class="footer dis-select">
+    <div class="social-wrap"><a class="social" href="https://weibo.com/u/1059010184" target="_blank">
+            <img src="../../social/weibo.svg">
+        </a><a class="social" href="https://github.com/yuzhigang" target="_blank">
+            <img src="../../social/github.svg">
+        </a></div>
+</footer></aside>
+        <main class="LMain"><header class="header mobile-only">
+  <div class="logo-wrap">
+      <a class="avatar" href="../../">
+          <div class="mask"></div>
+          <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
+          <img class="avatar" src="../../avatar.png" onerror="this.classList.add('error');this.src='../../img/unknow.svg';">
+      </a>
+      <a class="title" href="../../">
+          <div class="main" ff="title">Zigzag</div>
+          <div class="sub normal cap">赴汤蹈火啊琛哥</div>
+          <div class="sub hover cap">毕生终究一无所成。知天命，尽人事。</div>
+      </a>
+  </div>
+</header><div class="bread-nav fs14">
+  <div class="breadcrumb"><a class="cap item" href="../../categories/%e8%ae%be%e8%ae%a1">设计</a>
+      <span class="sep"> </span>
+      <span class="sep">|</span><a class="cap item" href="../../tags/%e8%ae%be%e8%ae%a1%e6%96%87%e6%a1%a3">设计文档</a>
+      <span class="sep"> </span></div>
+  <span class="post-meta">发布于 0001-1-1</span>
+</div>
+
+<article class="md-text content post">
+  <h1 class="article-title">动态api设计文档</h1><blockquote class="description">动态api设计文档</blockquote><section></section>
+<h1 id="#更新记录">
+    更新记录
+    <a class="anchor" name="更新记录" href="#%e6%9b%b4%e6%96%b0%e8%ae%b0%e5%bd%95">#</a>
+</h1>
+<section id="#更新记录"><table>
+<thead>
+<tr>
+<th>更新日期</th>
+<th>版本</th>
+<th>变更操作</th>
+<th>变更内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-03-27</td>
+<td>V1.0</td>
+<td>余志刚，创建</td>
+<td>完成创建</td>
+</tr>
+<tr>
+<td>2024-04-01</td>
+<td>V1.1</td>
+<td>余志刚，新增</td>
+<td>完成实现代码章节</td>
+</tr>
+</tbody>
+</table>
+</section>
+<h1 id="#设计目标">
+    设计目标
+    <a class="anchor" name="设计目标" href="#%e8%ae%be%e8%ae%a1%e7%9b%ae%e6%a0%87">#</a>
+</h1>
+<section id="#设计目标"><p>目标： 用模板引擎的方式撰写一段Sql脚本模板，并指明对应的参数含义，发布后前端可以通过 <code>/api/dynamic-api/invoke/my-api-name</code>的方式直接调用，且调用支持多种HTTP方法和以不同的方式传递参数，如：查询参数、<code>body</code>和<code>header</code>参数方式。</p>
+</section>
+<h2 id="#基本过程">
+    基本过程
+    <a class="anchor" name="基本过程" href="#%e5%9f%ba%e6%9c%ac%e8%bf%87%e7%a8%8b">#</a>
+</h2>
+<section id="#基本过程"><p>api定义(<code>ApiDefinition</code>): 定义一个api，指明唯一的<code>name</code>和备注信息等，并指明它的sql脚本和数据库链接等。</p>
+<p>连接池(<code>ConnectionPool</code>):  多个api请求数据库的数据时共享同一个连接池，减少建立链接的过程。为api指定连接池，即指明对应的数据库链接地址，则直接执行调用；</p>
+<p>api参数(<code>ApiParameter</code>): 定义一个api需要的参数，该参数的名称需要上述sql脚本使用的脚本保持一致。</p>
+<p>配置动态api的过程如下：</p>
+<ol>
+<li>提供表单，用户填写api的基本信息，如：英文名称、请求方法、备注信息等；</li>
+<li>用户填写api运行时要执行的sql脚本，注意这里要使用到模板引擎，有很多判空的逻辑。本系统推荐使用<code>liquid</code>模板。</li>
+<li>为该api指明sql脚本执行时调用哪个链接，即使用哪个数据库。弹出连接池列表选中一个。</li>
+<li>用户填写api是否支持分页和排序，若支持，则自动含有分页和排序对应的查询参数，如：pageSize\MaxResult\Sorting等。</li>
+<li>用户为该api添加参数，参数分为：查询参数、body参数和header参数，另外也需要添加参数的名称。这些参数需要与第2步中，脚本引擎引用的变量名称保持一致。</li>
+<li>发布该api，配置该api的可访问<code>permissions</code>。</li>
+<li>测试api的可用性，提供参数的输入界面，点击测试后能返回对应的结果。</li>
+</ol>
+<p><code>liquid</code>模板的sql脚本实例如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="nx">assign</span> <span class="nx">param1</span> <span class="o">=</span> <span class="s1">&#39;value1&#39;</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="nx">assign</span> <span class="nx">param2</span> <span class="o">=</span> <span class="s1">&#39;value2&#39;</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="nx">assign</span> <span class="nx">param3</span> <span class="o">=</span> <span class="kc">null</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="nx">assign</span> <span class="nx">sql_query</span> <span class="o">=</span> <span class="s2">&#34;SELECT * FROM your_table WHERE 1=1&#34;</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">param1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="o">%</span> <span class="nx">assign</span> <span class="nx">sql_query</span> <span class="o">=</span> <span class="nx">sql_query</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="s2">&#34; AND column1 = &#39;&#34;</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="nx">param1</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="s2">&#34;&#39;&#34;</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">param2</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="o">%</span> <span class="nx">assign</span> <span class="nx">sql_query</span> <span class="o">=</span> <span class="nx">sql_query</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="s2">&#34; AND column2 = &#39;&#34;</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="nx">param2</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="s2">&#34;&#39;&#34;</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">param3</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="o">%</span> <span class="nx">assign</span> <span class="nx">sql_query</span> <span class="o">=</span> <span class="nx">sql_query</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="s2">&#34; AND column3 = &#39;&#34;</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="nx">param3</span> <span class="o">|</span> <span class="nx">append</span><span class="o">:</span> <span class="s2">&#34;&#39;&#34;</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">sql_query</span> <span class="p">}}</span></span></span></code></pre></div><blockquote>
+<p>可类比C#模板引擎： <a class="md-link" href="https://github.com/scriban/scriban"  >https://github.com/scriban/scriban<img class="icon" src="../../img/link.svg" /></a> ， abp使用了该模板引擎，主要看对if语句的兼容情况，以及要保持语言简洁。</p>
+</blockquote>
+<p><code>Handlebars</code> 模板引擎来构造 SQL 查询语句的示例:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="err">{#with</span> <span class="err">params</span><span class="p">}</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">SELECT</span> <span class="err">*</span> <span class="err">FROM</span> <span class="err">your_table</span> <span class="err">WHERE</span> <span class="mi">1</span><span class="err">=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{#if</span> <span class="err">param1</span><span class="p">}</span><span class="err">}</span> <span class="err">AND</span> <span class="err">column</span><span class="mi">1</span> <span class="err">=</span> <span class="err">&#39;</span><span class="p">{</span><span class="err">{param1</span><span class="p">}</span><span class="err">}&#39;</span><span class="p">{</span><span class="err">{/if</span><span class="p">}</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{#if</span> <span class="err">param2</span><span class="p">}</span><span class="err">}</span> <span class="err">AND</span> <span class="err">column</span><span class="mi">2</span> <span class="err">=</span> <span class="err">&#39;</span><span class="p">{</span><span class="err">{param2</span><span class="p">}</span><span class="err">}&#39;</span><span class="p">{</span><span class="err">{/if</span><span class="p">}</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{#if</span> <span class="err">param3</span><span class="p">}</span><span class="err">}</span> <span class="err">AND</span> <span class="err">column</span><span class="mi">3</span> <span class="err">=</span> <span class="err">&#39;</span><span class="p">{</span><span class="err">{param3</span><span class="p">}</span><span class="err">}&#39;</span><span class="p">{</span><span class="err">{/if</span><span class="p">}</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{/with</span><span class="p">}</span><span class="err">}</span></span></span></code></pre></div><p><code>razor</code>语法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">string</span> <span class="n">template</span> <span class="p">=</span> <span class="s">@&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">            @{
+</span></span></span><span class="line"><span class="cl"><span class="s">                var param1 = Model.param1;
+</span></span></span><span class="line"><span class="cl"><span class="s">                var param2 = Model.param2;
+</span></span></span><span class="line"><span class="cl"><span class="s">                var param3 = Model.param3;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">                // 构造 SQL 查询语句
+</span></span></span><span class="line"><span class="cl"><span class="s">                var sqlQuery = &#34;&#34;SELECT * FROM your_table WHERE 1=1 order by &#34;&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="s">                if (!string.IsNullOrEmpty(param1))
+</span></span></span><span class="line"><span class="cl"><span class="s">                {
+</span></span></span><span class="line"><span class="cl"><span class="s">                    sqlQuery += &#34;&#34; AND column1 = &#39;&#34;&#34; + param1 + &#34;&#34;&#39;&#34;&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="s">                }
+</span></span></span><span class="line"><span class="cl"><span class="s">                if (!string.IsNullOrEmpty(param2))
+</span></span></span><span class="line"><span class="cl"><span class="s">                {
+</span></span></span><span class="line"><span class="cl"><span class="s">                    sqlQuery += &#34;&#34; AND column2 = &#39;&#34;&#34; + param2 + &#34;&#34;&#39;&#34;&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="s">                }
+</span></span></span><span class="line"><span class="cl"><span class="s">                if (!string.IsNullOrEmpty(param3))
+</span></span></span><span class="line"><span class="cl"><span class="s">                {
+</span></span></span><span class="line"><span class="cl"><span class="s">                    sqlQuery += &#34;&#34; AND column3 = &#39;&#34;&#34; + param3 + &#34;&#34;&#39;&#34;&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="s">                }
+</span></span></span><span class="line"><span class="cl"><span class="s">            }
+</span></span></span><span class="line"><span class="cl"><span class="s">            @sqlQuery&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">model</span> <span class="p">=</span> <span class="k">new</span> <span class="p">{</span> <span class="n">param1</span> <span class="p">=</span> <span class="s">&#34;value1&#34;</span><span class="p">,</span> <span class="n">param2</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="kc">null</span><span class="p">,</span> <span class="n">param3</span> <span class="p">=</span> <span class="s">&#34;value3&#34;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">string</span> <span class="n">result</span> <span class="p">=</span> <span class="n">Engine</span><span class="p">.</span><span class="n">Razor</span><span class="p">.</span><span class="n">RunCompile</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="s">&#34;templateKey&#34;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span></span></span></code></pre></div></section>
+<h2 id="#动态api的返回对象">
+    动态api的返回对象
+    <a class="anchor" name="动态api的返回对象" href="#%e5%8a%a8%e6%80%81api%e7%9a%84%e8%bf%94%e5%9b%9e%e5%af%b9%e8%b1%a1">#</a>
+</h2>
+<section id="#动态api的返回对象"><p>当<code>IsMultipleResult=true 或 IsPaging = true</code>时：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;totalCount&#34;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;items&#34;</span><span class="p">:[{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// ... 具体的实体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><p>当<code>IsMultipleResult=false</code>时：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 具体的实体结构
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></section>
+<h2 id="#数据库设计">
+    数据库设计
+    <a class="anchor" name="数据库设计" href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e8%ae%be%e8%ae%a1">#</a>
+</h2>
+<section id="#数据库设计"><p>数据库连接池 <code>ConnectionPool</code>，</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>逻辑名</th>
+<th>数据类型</th>
+<th>长度</th>
+<th>约束</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>主键Id</td>
+<td>String</td>
+<td>36</td>
+<td>主键</td>
+<td>Id</td>
+</tr>
+<tr>
+<td>DisplayText</td>
+<td>显示名称</td>
+<td>String</td>
+<td>64</td>
+<td></td>
+<td>连接池名称</td>
+</tr>
+<tr>
+<td>ConnectionString</td>
+<td>链接字符串</td>
+<td>String</td>
+<td>256</td>
+<td></td>
+<td>链接字符串</td>
+</tr>
+<tr>
+<td>DbType</td>
+<td>数据库类型</td>
+<td>String</td>
+<td>64</td>
+<td></td>
+<td>数据库类型，如： Oracle、MySql等</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>主机地址</td>
+<td>String</td>
+<td>100</td>
+<td></td>
+<td>主机地址</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>端口号</td>
+<td>String</td>
+<td>10</td>
+<td></td>
+<td>端口号</td>
+</tr>
+<tr>
+<td>UserName</td>
+<td>用户名</td>
+<td>String</td>
+<td>32</td>
+<td></td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>密码</td>
+<td>String</td>
+<td>128</td>
+<td></td>
+<td>密码</td>
+</tr>
+<tr>
+<td>IsActive</td>
+<td>是否激活</td>
+<td>Bool</td>
+<td>1</td>
+<td></td>
+<td>是否激活，可用状态</td>
+</tr>
+<tr>
+<td>PoolSize</td>
+<td>连接池大小</td>
+<td>Integer</td>
+<td>32</td>
+<td></td>
+<td>连接池大小</td>
+</tr>
+<tr>
+<td>MaxConcurrency</td>
+<td>最大并发量</td>
+<td>Integer</td>
+<td>32</td>
+<td></td>
+<td>最大并发量</td>
+</tr>
+<tr>
+<td>Remark</td>
+<td>备注</td>
+<td>String</td>
+<td></td>
+<td></td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p>API定义 <code>ApiDefintion</code></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>逻辑名</th>
+<th>数据类型</th>
+<th>长度</th>
+<th>约束</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>主键Id</td>
+<td>String</td>
+<td>64</td>
+<td>主键</td>
+<td>Id</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>名称</td>
+<td>String</td>
+<td>64</td>
+<td>非空</td>
+<td>API名称，英文</td>
+</tr>
+<tr>
+<td>Category</td>
+<td>类别</td>
+<td>String</td>
+<td>32</td>
+<td></td>
+<td>类别，默认为default</td>
+</tr>
+<tr>
+<td>ConnectionPoolId</td>
+<td>连接池Id</td>
+<td>String</td>
+<td>64</td>
+<td>非空</td>
+<td>连接池Id，表明从哪个数据库获得数据</td>
+</tr>
+<tr>
+<td>HttpMethod</td>
+<td>请求方法</td>
+<td>String</td>
+<td>32</td>
+<td>非空</td>
+<td>请求方法，如：get\post\delete\put等</td>
+</tr>
+<tr>
+<td>ScriptTemplate</td>
+<td>脚本模板</td>
+<td>String</td>
+<td>1024</td>
+<td>非空</td>
+<td>脚本模板，如使用一段 liquid代码</td>
+</tr>
+<tr>
+<td>ScriptType</td>
+<td>脚本类型</td>
+<td>String</td>
+<td>64</td>
+<td></td>
+<td>脚本类型，如： sql 语句， 或存储过程 procedure，默认为sql</td>
+</tr>
+<tr>
+<td>TemplateEngine</td>
+<td>模板引擎</td>
+<td>String</td>
+<td>32</td>
+<td>非空</td>
+<td>如使用liquid解析模板</td>
+</tr>
+<tr>
+<td>IsMultipleResult</td>
+<td>是否是多行记录</td>
+<td>Bool</td>
+<td>1</td>
+<td></td>
+<td>是否返回多行记录，此设置影响返回结果的格式</td>
+</tr>
+<tr>
+<td>IsPaging</td>
+<td>是否分页</td>
+<td>Bool</td>
+<td>1</td>
+<td></td>
+<td>是否支持分页，若支持则自动有 pageSize 和 maxResult查询参数，不需要配置</td>
+</tr>
+<tr>
+<td>IsSorting</td>
+<td>是否排序</td>
+<td>Bool</td>
+<td>1</td>
+<td></td>
+<td>是否支持排序，若支持则自动有 sorting查询参数，不需要配置</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>需要的权限</td>
+<td>String</td>
+<td>512</td>
+<td></td>
+<td>逗号隔开，只有对应的权限才可以访问该api，不填则不需要权限</td>
+</tr>
+<tr>
+<td>Rank</td>
+<td>顺序值</td>
+<td>Integer</td>
+<td>32</td>
+<td></td>
+<td>顺序值</td>
+</tr>
+<tr>
+<td>Remark</td>
+<td>备注</td>
+<td>String</td>
+<td></td>
+<td></td>
+<td>备注信息</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>IsMultipleResult: 是用来指示返回结果的格式，为true时结果集为数组，也影响执行sql语句后对结果的处理上。</p>
+<p>IsPaging: 指示是否分页，若分页就不需要在ApiParameter表增加pageSize和maxResult的查询参数，另外当IsPaging=true时， 必然 IsMultipleResult = true。</p>
+<p>IsSorting: 指示是否排序，若有排序就不需要在ApiParameter表增加sorting的查询参数，在脚本模板里可以引用sorting字段。</p>
+</blockquote>
+<p>API参数 <code>ApiParameter</code></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>逻辑名</th>
+<th>数据类型</th>
+<th>长度</th>
+<th>约束</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>主键Id</td>
+<td>String</td>
+<td>64</td>
+<td>主键</td>
+<td>Id</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>名称</td>
+<td>String</td>
+<td>64</td>
+<td>非空</td>
+<td>参数名称</td>
+</tr>
+<tr>
+<td>DisplayText</td>
+<td>显示的中文文本</td>
+<td>String</td>
+<td>128</td>
+<td></td>
+<td>显示的中文文本</td>
+</tr>
+<tr>
+<td>DataType</td>
+<td>数据类型</td>
+<td>String</td>
+<td>32</td>
+<td></td>
+<td>数据类型，如：float，integer，string，bool等。</td>
+</tr>
+<tr>
+<td>ParamType</td>
+<td>参数类型</td>
+<td>String</td>
+<td>32</td>
+<td>非空</td>
+<td>参数类型，如：查询参数、路径参数(基本不大可能）、header参数或body请求体</td>
+</tr>
+<tr>
+<td>Multiple</td>
+<td>是否是数组</td>
+<td>Bool</td>
+<td>1</td>
+<td>非空</td>
+<td>是否是数组</td>
+</tr>
+<tr>
+<td>Required</td>
+<td>是否是必需的</td>
+<td>Bool</td>
+<td>1</td>
+<td></td>
+<td>是否是必需的</td>
+</tr>
+<tr>
+<td>DefinitionId</td>
+<td>Api的定义Id</td>
+<td>String</td>
+<td>64</td>
+<td></td>
+<td>该参数属于哪个Api定义的</td>
+</tr>
+<tr>
+<td>Rank</td>
+<td>顺序值</td>
+<td>Integer</td>
+<td>32</td>
+<td></td>
+<td>顺序值</td>
+</tr>
+</tbody>
+</table>
+</section>
+<h2 id="#接口设计">
+    接口设计
+    <a class="anchor" name="接口设计" href="#%e6%8e%a5%e5%8f%a3%e8%ae%be%e8%ae%a1">#</a>
+</h2>
+<section id="#接口设计"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">interface</span> <span class="nc">ITemplateEngine</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Render</span><span class="p">(</span><span class="kt">string</span> <span class="n">template</span><span class="p">,</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">input</span> <span class="p">=</span> <span class="kc">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">JsTemplateEngine</span><span class="p">:</span> <span class="n">ITemplateEngine</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">LiquidTemplateEngine</span><span class="p">:</span> <span class="n">ITemplateEngine</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">TemplateEngineManager</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">RegisterEngine</span><span class="p">(</span><span class="kt">string</span> <span class="n">engineName</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ITemplateEngine</span> <span class="n">GetEngine</span><span class="p">(</span><span class="kt">string</span> <span class="n">engineName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ConnectionManager</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 先实现 Oracle和 mysql的 连接池获取</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 需要用到连接池 ConnectionPool</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">IDbConnection</span> <span class="n">GetConnection</span><span class="p">(</span><span class="n">Guid</span> <span class="n">connectionPoolId</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">ReturnConnection</span><span class="p">(</span><span class="n">IDbConnection</span> <span class="n">connection</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ExecutionContext</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ExecutionContext</span><span class="p">(</span><span class="kt">string</span> <span class="n">apiName</span><span class="p">,</span> <span class="n">ApiDefinition</span> <span class="n">definition</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ApiParameter</span><span class="p">&gt;</span>  <span class="n">parameters</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ApiName</span> <span class="p">=</span> <span class="n">apiName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Definition</span> <span class="p">=</span> <span class="n">definition</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Parameters</span> <span class="p">=</span> <span class="n">parameters</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">ApiName</span><span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="kd">protected</span> <span class="k">set</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ApiDefinition</span> <span class="n">Definition</span><span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="kd">protected</span> <span class="k">set</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ApiParameter</span><span class="p">&gt;</span> <span class="n">Parameters</span><span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="kd">protected</span> <span class="k">set</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">bool</span> <span class="n">CheckParameters</span><span class="p">(</span><span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">input</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">interface</span> <span class="nc">IDynamicApiExecutor</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Task</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">ExecuteAsync</span><span class="p">(</span><span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">DefaultDynamicApiExecutor</span><span class="p">:</span> <span class="n">IDynamicApiExecutor</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">     <span class="kd">protected</span> <span class="k">readonly</span> <span class="n">TemplateEngineManager</span> <span class="n">_templateEngineManager</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kd">protected</span> <span class="k">readonly</span>  <span class="n">ConnectionManager</span> <span class="n">_connectionManager</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">     <span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">ExecuteAsync</span><span class="p">(</span><span class="n">ExecutionContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">input</span> <span class="p">=</span> <span class="kc">null</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 1.检查入参：根据传入的input和Parameters定义，检查 input的类型以及是否必需等信息，若不满足则抛出异常</span>
+</span></span><span class="line"><span class="cl">         <span class="kt">bool</span> <span class="n">isSuccess</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">CheckParametes</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="c1">// 2.渲染模板： 根据定义和对应的引擎类型，传入input获得渲染后的sql语句或调用存储过程的语句</span>
+</span></span><span class="line"><span class="cl">         <span class="kt">var</span> <span class="n">engine</span> <span class="p">=</span> <span class="n">_templateEngineManager</span><span class="p">.</span><span class="n">GetEngine</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">Definition</span><span class="p">.</span><span class="n">TemplateEngine</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">         <span class="kt">string</span> <span class="n">sqlQuery</span> <span class="p">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">Render</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">Definition</span><span class="p">.</span><span class="n">ScriptTemplate</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="c1">// 3.获取链接：根据Defition的ConnectionPoolId从连接池中获得链接</span>
+</span></span><span class="line"><span class="cl">         <span class="n">IDbConnection</span> <span class="n">connection</span> <span class="p">=</span> <span class="n">_connectionManager</span><span class="p">.</span><span class="n">GetConnection</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">Definition</span><span class="p">.</span><span class="n">ConnectionPoolId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">              
+</span></span><span class="line"><span class="cl">        <span class="c1">// 4.执行sql： 建立链接，并启动调用。根据定义返回对应的结果</span>
+</span></span><span class="line"><span class="cl">          <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span>  <span class="n">connection</span><span class="p">.</span><span class="n">ExecuteSql</span><span class="p">(</span><span class="n">sqlQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 5.归还链接：归还到连接池中</span>
+</span></span><span class="line"><span class="cl">         <span class="n">_connectonManager</span><span class="p">.</span><span class="n">ReturnConnection</span><span class="p">(</span><span class="n">connection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">         <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">DynamicApiManager</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">protected</span> <span class="n">IDynamicApiExecutor</span> <span class="n">_executor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">private</span> <span class="kd">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">ExecutionContext</span><span class="p">&gt;</span> <span class="n">BuildContext</span><span class="p">(</span><span class="kt">string</span> <span class="n">apiName</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// var definition = _apiDefinitionRepository.FindAsync(s=&gt;s.Name == apiName);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">ExecutionContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">       <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">ExecuteAsync</span><span class="p">(</span><span class="kt">string</span> <span class="n">apiName</span><span class="p">,</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">input</span> <span class="p">=</span> <span class="kc">null</span><span class="p">){</span> 
+</span></span><span class="line"><span class="cl">      	  <span class="kt">var</span> <span class="n">context</span> <span class="p">=</span> <span class="k">await</span> <span class="n">BuildContext</span><span class="p">(</span><span class="n">apiName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">await</span> <span class="n">_executor</span><span class="p">.</span><span class="n">ExecuteAsync</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span> <span class="n">CheckPermission</span><span class="p">(</span><span class="kt">string</span> <span class="n">apiName</span><span class="p">,</span> <span class="kt">string</span> <span class="n">userId</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">permissions</span> <span class="p">=</span> <span class="k">await</span> <span class="n">repository</span><span class="p">.</span><span class="n">GetApiPermissions</span><span class="p">(</span><span class="n">apiName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">await</span> <span class="n">_permissionManager</span><span class="p">.</span><span class="n">CheckePermisions</span><span class="p">(</span><span class="n">permissions</span><span class="p">,</span> <span class="n">userId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></section>
+<h2 id="#endpoint设计">
+    Endpoint设计
+    <a class="anchor" name="endpoint设计" href="#endpoint%e8%ae%be%e8%ae%a1">#</a>
+</h2>
+<section id="#endpoint设计"><p><code>IQueryCollection</code> 解决查询参数不确定的问题。<code>IFormCollection</code> 解决POST方法时表单参数不确定的问题。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Http</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="n">DynamicApiManager</span> <span class="n">_dynamicApiManager</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[HttpPost(&#34;invoke/{apiName}&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IActionResult</span> <span class="n">InvokePost</span><span class="p">(</span><span class="kt">string</span> <span class="n">apiName</span><span class="p">,</span> <span class="n">IFormCollection</span> <span class="n">formData</span><span class="p">,</span> <span class="n">IQueryCollection</span> <span class="n">queryParameters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">input</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;(</span><span class="m">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 处理请求体参数</span>
+</span></span><span class="line"><span class="cl">    <span class="n">formData</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">s</span> <span class="p">=&gt;</span> <span class="n">input</span><span class="p">[</span><span class="n">s</span><span class="p">.</span><span class="n">Key</span><span class="p">]</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 处理查询参数</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queryParameters</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">s</span> <span class="p">=&gt;</span> <span class="n">input</span><span class="p">[</span><span class="n">s</span><span class="p">.</span><span class="n">Key</span><span class="p">]</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">_dynamicApiManager</span><span class="p">.</span><span class="n">ExecuteAsync</span><span class="p">(</span><span class="n">apiName</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Ok</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[HttpGet(&#34;invoke/{apiName}&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IActionResult</span> <span class="n">InvokeGet</span><span class="p">(</span><span class="kt">string</span> <span class="n">apiName</span><span class="p">,</span>  <span class="n">IQueryCollection</span> <span class="n">queryParameters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">input</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;(</span><span class="m">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queryParameters</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">s</span> <span class="p">=&gt;</span> <span class="n">input</span><span class="p">[</span><span class="n">s</span><span class="p">.</span><span class="n">Key</span><span class="p">]</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">_dynamicApiManager</span><span class="p">.</span><span class="n">ExecuteAsync</span><span class="p">(</span><span class="n">apiName</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Ok</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[HttpPut(&#34;invoke/{apiName}&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IActionResult</span> <span class="n">InvokePut</span><span class="p">(</span><span class="kt">string</span> <span class="n">apiName</span><span class="p">,</span> <span class="n">IFormCollection</span> <span class="n">formData</span><span class="p">,</span> <span class="n">IQueryCollection</span> <span class="n">queryParameters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[HttpDelete(&#34;invoke/{apiName}&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">IActionResult</span> <span class="n">InvokeDelete</span><span class="p">(</span><span class="kt">string</span> <span class="n">apiName</span><span class="p">,</span> <span class="n">IFormCollection</span> <span class="n">formData</span><span class="p">,</span> <span class="n">IQueryCollection</span> <span class="n">queryParameters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{}</span></span></span></code></pre></div><blockquote>
+<p>注意：上述Action的URL地址配置都是一样的，但是HTTP方法都不一样，那么就可以实现调用侧只需要使用不同的方法但是相同的url地址实现api接口的使用。</p>
+</blockquote>
+</section>
+</article><div class="float-panel mobile-only blur" style="display:none">
+  <button type="button" class="sidebar-toggle" onclick="float_panel_click()">
+    <svg class="icon" style="width:1em;height:1em;vertical-align:middle;fill:currentColor;overflow:hidden" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301">
+      <path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path>
+      <path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path>
+    </svg>
+  </button>
+  <script>
+    float_panel_click = () => {
+      document.getElementById("start").classList.toggle("mobile");
+      document.getElementsByClassName("sidebar-toggle")[0].classList.toggle("mobile");
+    }
+  </script>
+</div></main>
+    </div>
+</body><script src="../../scripts/tableOfContents.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.9/MathJax.js" defer></script>
+
+
+
+
+<script src="../../scripts/mathjax.js"></script>
+</html>
