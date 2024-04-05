@@ -116,37 +116,37 @@
     倒序查询某表的最后100条记录，并正序排列
     <a class="anchor" name="倒序查询某表的最后100条记录并正序排列" href="#%e5%80%92%e5%ba%8f%e6%9f%a5%e8%af%a2%e6%9f%90%e8%a1%a8%e7%9a%84%e6%9c%80%e5%90%8e100%e6%9d%a1%e8%ae%b0%e5%bd%95%e5%b9%b6%e6%ad%a3%e5%ba%8f%e6%8e%92%e5%88%97">#</a>
 </h2>
-<section id="#倒序查询某表的最后100条记录并正序排列"><pre tabindex="0"><code>select * from
-(select * from FAC_HEAT_CONSUMPTION t order by id desc)
-where rownum &lt; 100 order by id
-
-
-select * from
-(select * from HS_CHEMICAL_IRON t order by id desc OFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY)
-order by id</code></pre><p>从0开始，获取100个，OFFSET 0 ROWS可以省略掉。</p>
+<section id="#倒序查询某表的最后100条记录并正序排列"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">FAC_HEAT_CONSUMPTION</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">rownum</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">HS_CHEMICAL_IRON</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">FETCH</span><span class="w"> </span><span class="k">NEXT</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">ONLY</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span></span></span></code></pre></div><p>从0开始，获取100个，OFFSET 0 ROWS可以省略掉。</p>
 </section>
 <h2 id="#删除sysdbms_schedulercreate_job创建的日志">
     删除sys.dbms_scheduler.create_job创建的日志
     <a class="anchor" name="删除sysdbms_schedulercreate_job创建的日志" href="#%e5%88%a0%e9%99%a4sysdbms_schedulercreate_job%e5%88%9b%e5%bb%ba%e7%9a%84%e6%97%a5%e5%bf%97">#</a>
 </h2>
-<section id="#删除sysdbms_schedulercreate_job创建的日志"><pre tabindex="0"><code>begin
-  sys.dbms_scheduler.create_job(job_name            =&gt; &#39;ARIMSGTEST.UPDATE_PL_JOB&#39;,
-                                job_type            =&gt; &#39;STORED_PROCEDURE&#39;,
-                                job_action          =&gt; &#39;arimsgtest.update_pl_job&#39;,
-                                start_date          =&gt; to_date(null),
-                                repeat_interval     =&gt; &#39;Freq=Hourly;Interval=1&#39;,
-                                end_date            =&gt; to_date(null),
-                                job_class           =&gt; &#39;DEFAULT_JOB_CLASS&#39;,
-                                enabled             =&gt; true,
-                                auto_drop           =&gt; false,
-                                comments            =&gt; &#39;&#39;);
-end;
-/
-
-SELECT * FROM User_Scheduler_Jobs; // 查看作业
-SELECT * from All_scheduler_job_log where owner= &#39;ARIMSGTEST&#39; and job_name= &#39;UPDATE_PL_JOB2&#39; 
-select * from All_scheduler_job_run_details where owner= &#39;ARIMSGTEST&#39; and job_name= &#39;UPDATE_PL_JOB2&#39;
-Delete from all_scheduler_job_run_details where owner= &#39;ARIMSGTEST&#39; and job_name= &#39;UPDATE_PL_JOB2&#39;</code></pre><p>logging_level——日志记录级别（DBMS_SCHEDULER.LOGGING_OFF，DBMS_SCHEDULER.LOGGING_RUNS，DBMS_SCHEDULER.LOGGING_FULL）<a class="md-link" href="https://blog.csdn.net/Seabiscuit_92/article/details/51038281"  >https://blog.csdn.net/Seabiscuit_92/article/details/51038281<img class="icon" src="../../img/link.svg" /></a>
+<section id="#删除sysdbms_schedulercreate_job创建的日志"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">begin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">sys</span><span class="p">.</span><span class="n">dbms_scheduler</span><span class="p">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">job_name</span><span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;ARIMSGTEST.UPDATE_PL_JOB&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">job_type</span><span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;STORED_PROCEDURE&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">job_action</span><span class="w">          </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;arimsgtest.update_pl_job&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">start_date</span><span class="w">          </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">to_date</span><span class="p">(</span><span class="k">null</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">repeat_interval</span><span class="w">     </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Freq=Hourly;Interval=1&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">end_date</span><span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">to_date</span><span class="p">(</span><span class="k">null</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">job_class</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;DEFAULT_JOB_CLASS&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">enabled</span><span class="w">             </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">true</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">auto_drop</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">false</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                                </span><span class="n">comments</span><span class="w">            </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">end</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">User_Scheduler_Jobs</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">查看作业</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">All_scheduler_job_log</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">owner</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ARIMSGTEST&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job_name</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;UPDATE_PL_JOB2&#39;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">All_scheduler_job_run_details</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">owner</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ARIMSGTEST&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job_name</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;UPDATE_PL_JOB2&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">Delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">all_scheduler_job_run_details</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">owner</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ARIMSGTEST&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">job_name</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;UPDATE_PL_JOB2&#39;</span></span></span></code></pre></div><p>logging_level——日志记录级别（DBMS_SCHEDULER.LOGGING_OFF，DBMS_SCHEDULER.LOGGING_RUNS，DBMS_SCHEDULER.LOGGING_FULL）<a class="md-link" href="https://blog.csdn.net/Seabiscuit_92/article/details/51038281"  >https://blog.csdn.net/Seabiscuit_92/article/details/51038281<img class="icon" src="../../img/link.svg" /></a>
 restartable
 max_runs
 max_failures</p>
@@ -156,11 +156,11 @@ max_failures</p>
     分组后只取第一条记录
     <a class="anchor" name="分组后只取第一条记录" href="#%e5%88%86%e7%bb%84%e5%90%8e%e5%8f%aa%e5%8f%96%e7%ac%ac%e4%b8%80%e6%9d%a1%e8%ae%b0%e5%bd%95">#</a>
 </h2>
-<section id="#分组后只取第一条记录"><pre tabindex="0"><code>SELECT *       
-    FROM (SELECT ROW_NUMBER() OVER(PARTITION BY x ORDER BY y DESC) rn,       
-          test1.*       
-          FROM test1)       
-   WHERE rn = 1  ;   </code></pre></section>
+<section id="#分组后只取第一条记录"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">       
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">ROW_NUMBER</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="n">rn</span><span class="p">,</span><span class="w">       
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">test1</span><span class="p">.</span><span class="o">*</span><span class="w">       
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">test1</span><span class="p">)</span><span class="w">       
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="p">;</span><span class="w">   </span></span></span></code></pre></div></section>
 <h2 id="#ora-00936缺失表达式">
     ora-00936:缺失表达式
     <a class="anchor" name="ora-00936缺失表达式" href="#ora-00936%e7%bc%ba%e5%a4%b1%e8%a1%a8%e8%be%be%e5%bc%8f">#</a>
@@ -172,7 +172,7 @@ max_failures</p>
     <a class="anchor" name="修改oracle的密码永不过期" href="#%e4%bf%ae%e6%94%b9oracle%e7%9a%84%e5%af%86%e7%a0%81%e6%b0%b8%e4%b8%8d%e8%bf%87%e6%9c%9f">#</a>
 </h2>
 <section id="#修改oracle的密码永不过期"><p>以dba方式登录：</p>
-<pre tabindex="0"><code></code></pre></section>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"></code></pre></div></section>
 <h2 id="#12c开始可以自增id了">
     12c开始可以自增id了
     <a class="anchor" name="12c开始可以自增id了" href="#12c%e5%bc%80%e5%a7%8b%e5%8f%af%e4%bb%a5%e8%87%aa%e5%a2%9eid%e4%ba%86">#</a>
@@ -181,41 +181,41 @@ max_failures</p>
 id NUMBER GENERATED ALWAYS AS IDENTITY,
 description VARCHAR2(30)
 );</p>
-<pre tabindex="0"><code>select * from v$resource_limit
-select * from v$process
-select * from v$bgprocess
-select * from v$session
-select * from v$session t where t.STATUS=&#39;ACTIVE&#39;
-
-select username,lockwait,status,machine,program from v$session where sid in
-(select session_id from v$locked_object)
-
-select sql_text from v$sql where hash_value in
-(select sql_hash_value from v$session where sid in
-(select session_id from v$locked_object))
-
-SELECT s.username,l.OBJECT_ID,l.SESSION_ID,s.SERIAL#,
-l.ORACLE_USERNAME,l.OS_USER_NAME,l.PROCESS
-FROM V$LOCKED_OBJECT l,V$SESSION S WHERE l.SESSION_ID=S.SID;
-
-alter system kill session &#39;113,25455&#39;; 
-
-select * from v$process  p where not exists (select spid from v$session where paddr=p.addr)
-
-exec DBMS_SCHEDULER.STOP_JOB(job_name =&gt;&#39;JOB_INSERT_L2_CCM&#39;,force =&gt; TRUE);
-select name from v$database;
-select * from dba_scheduler_running_jobs;</code></pre><p>— Find the job</p>
-<pre tabindex="0"><code>select * from dba_scheduler_running_jobs;</code></pre><p>— Kill the job:</p>
-<pre tabindex="0"><code>exec DBMS_SCHEDULER.STOP_JOB(job_name =&gt; &#39;JOB_INSERT_L2_CCM&#39;,force =&gt; TRUE);</code></pre></section>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$resource_limit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$process</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$bgprocess</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$session</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$session</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">STATUS</span><span class="o">=</span><span class="s1">&#39;ACTIVE&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="n">lockwait</span><span class="p">,</span><span class="n">status</span><span class="p">,</span><span class="n">machine</span><span class="p">,</span><span class="n">program</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$session</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sid</span><span class="w"> </span><span class="k">in</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">session_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$locked_object</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">sql_text</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$sql</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">hash_value</span><span class="w"> </span><span class="k">in</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">sql_hash_value</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$session</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">sid</span><span class="w"> </span><span class="k">in</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">session_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$locked_object</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">username</span><span class="p">,</span><span class="n">l</span><span class="p">.</span><span class="n">OBJECT_ID</span><span class="p">,</span><span class="n">l</span><span class="p">.</span><span class="n">SESSION_ID</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="nb">SERIAL</span><span class="o">#</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">l</span><span class="p">.</span><span class="n">ORACLE_USERNAME</span><span class="p">,</span><span class="n">l</span><span class="p">.</span><span class="n">OS_USER_NAME</span><span class="p">,</span><span class="n">l</span><span class="p">.</span><span class="n">PROCESS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">V$LOCKED_OBJECT</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="n">V$SESSION</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">SESSION_ID</span><span class="o">=</span><span class="n">S</span><span class="p">.</span><span class="n">SID</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">system</span><span class="w"> </span><span class="n">kill</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="s1">&#39;113,25455&#39;</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$process</span><span class="w">  </span><span class="n">p</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">spid</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$session</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">paddr</span><span class="o">=</span><span class="n">p</span><span class="p">.</span><span class="n">addr</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">exec</span><span class="w"> </span><span class="n">DBMS_SCHEDULER</span><span class="p">.</span><span class="n">STOP_JOB</span><span class="p">(</span><span class="n">job_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="s1">&#39;JOB_INSERT_L2_CCM&#39;</span><span class="p">,</span><span class="k">force</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">TRUE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$database</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dba_scheduler_running_jobs</span><span class="p">;</span></span></span></code></pre></div><p>— Find the job</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dba_scheduler_running_jobs</span><span class="p">;</span></span></span></code></pre></div><p>— Kill the job:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">exec</span><span class="w"> </span><span class="n">DBMS_SCHEDULER</span><span class="p">.</span><span class="n">STOP_JOB</span><span class="p">(</span><span class="n">job_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;JOB_INSERT_L2_CCM&#39;</span><span class="p">,</span><span class="k">force</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">TRUE</span><span class="p">);</span></span></span></code></pre></div></section>
 <h2 id="#session-process与connection的关系">
     Session Process与Connection的关系
     <a class="anchor" name="session-process与connection的关系" href="#session-process%e4%b8%8econnection%e7%9a%84%e5%85%b3%e7%b3%bb">#</a>
 </h2>
-<section id="#session-process与connection的关系"><pre tabindex="0"><code>select count(*) from v$session
-select count(*) from v$process
-select * from v$process where addr not in (select paddr from v$session)
-select sid, serial#,username,program,machine,status from v$session where status = &#39;INACTIVE&#39; order by machine;
-select * from dba_profiles</code></pre><p>Connection并不是直接建立在用户进程和数据库实例之间的。而是在用户进程和Server Process（服务器进程）之间的，因此有一个Connection就一定会有一个用户进程和一个服务器进程。但不一定会存在Session。比如，如果需要将东西从A运到B，Connection可以看成是一座“桥”，而卡车把东西从A运到B后并返回A，这就是Session。所以，只要不断开连接，随时都可以在这个连接上创建出会话。</p>
+<section id="#session-process与connection的关系"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$session</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$process</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$process</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">addr</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">paddr</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$session</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">sid</span><span class="p">,</span><span class="w"> </span><span class="nb">serial</span><span class="o">#</span><span class="p">,</span><span class="n">username</span><span class="p">,</span><span class="n">program</span><span class="p">,</span><span class="n">machine</span><span class="p">,</span><span class="n">status</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$session</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;INACTIVE&#39;</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">machine</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dba_profiles</span></span></span></code></pre></div><p>Connection并不是直接建立在用户进程和数据库实例之间的。而是在用户进程和Server Process（服务器进程）之间的，因此有一个Connection就一定会有一个用户进程和一个服务器进程。但不一定会存在Session。比如，如果需要将东西从A运到B，Connection可以看成是一座“桥”，而卡车把东西从A运到B后并返回A，这就是Session。所以，只要不断开连接，随时都可以在这个连接上创建出会话。</p>
 </section>
 <h2 id="#session占用问题">
     Session占用问题
@@ -223,34 +223,34 @@ select * from dba_profiles</code></pre><p>Connection并不是直接建立在用�
 </h2>
 <section id="#session占用问题"><p>ORA-00054: 资源正忙, 但指定以 NOWAIT 方式获取资源, 或者超时失效：
 首先检查是哪个sid，和serial。</p>
-<pre tabindex="0"><code>select t2.username,t2.sid,t2.serial#,t2.logon_time
-from v$locked_object t1,v$session t2
-where t1.session_id=t2.sid order by t2.logon_time;</code></pre><p>然后准备kill掉这个session，假设sid=111，serial=30547</p>
-<pre tabindex="0"><code>alter system kill session &#39;111,30547&#39;;</code></pre><p>可能出现错误：
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">username</span><span class="p">,</span><span class="n">t2</span><span class="p">.</span><span class="n">sid</span><span class="p">,</span><span class="n">t2</span><span class="p">.</span><span class="nb">serial</span><span class="o">#</span><span class="p">,</span><span class="n">t2</span><span class="p">.</span><span class="n">logon_time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">from</span><span class="w"> </span><span class="n">v$locked_object</span><span class="w"> </span><span class="n">t1</span><span class="p">,</span><span class="n">v$session</span><span class="w"> </span><span class="n">t2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">session_id</span><span class="o">=</span><span class="n">t2</span><span class="p">.</span><span class="n">sid</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">logon_time</span><span class="p">;</span></span></span></code></pre></div><p>然后准备kill掉这个session，假设sid=111，serial=30547</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">system</span><span class="w"> </span><span class="n">kill</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="s1">&#39;111,30547&#39;</span><span class="p">;</span></span></span></code></pre></div><p>可能出现错误：
 ORA-00031：标记要终止的会话 解决方法
 则首先执行，查看killed状态的spid，sid和serial：</p>
-<pre tabindex="0"><code>select a.spid,b.sid,b.serial#,b.username from v$process a,v$session b where a.addr=b.paddr and b.status=&#39;KILLED&#39;;</code></pre><p>准备使用oracle自带的命令删掉这个进程，需要在oracle服务器上执行cmd命令：</p>
-<pre tabindex="0"><code>orakill  _db  _spid</code></pre><p>其中，_db是通过以下命令获得：</p>
-<pre tabindex="0"><code>select name from v$database;</code></pre><p>_spid即为上述的spid值。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">spid</span><span class="p">,</span><span class="n">b</span><span class="p">.</span><span class="n">sid</span><span class="p">,</span><span class="n">b</span><span class="p">.</span><span class="nb">serial</span><span class="o">#</span><span class="p">,</span><span class="n">b</span><span class="p">.</span><span class="n">username</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$process</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">v$session</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">addr</span><span class="o">=</span><span class="n">b</span><span class="p">.</span><span class="n">paddr</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;KILLED&#39;</span><span class="p">;</span></span></span></code></pre></div><p>准备使用oracle自带的命令删掉这个进程，需要在oracle服务器上执行cmd命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">orakill</span><span class="w">  </span><span class="n">_db</span><span class="w">  </span><span class="n">_spid</span></span></span></code></pre></div><p>其中，_db是通过以下命令获得：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$database</span><span class="p">;</span></span></span></code></pre></div><p>_spid即为上述的spid值。</p>
 </section>
 <h2 id="#创建sequence和插入时自增trigger">
     创建Sequence和插入时自增Trigger
     <a class="anchor" name="创建sequence和插入时自增trigger" href="#%e5%88%9b%e5%bb%basequence%e5%92%8c%e6%8f%92%e5%85%a5%e6%97%b6%e8%87%aa%e5%a2%9etrigger">#</a>
 </h2>
-<section id="#创建sequence和插入时自增trigger"><pre tabindex="0"><code>-- Create sequence 
-create sequence HS_ADDITIVE_SEQ
-minvalue 1
-maxvalue 999999999999999999999999999
-start with 1
-increment by 1
-cache 20;</code></pre><p>创建触发器 HS_ADDITIVE_SEQ</p>
-<pre tabindex="0"><code>create or replace trigger 
-  HS_ADDITIVE_TRG BEFORE INSERT ON
- HS_ADDITIVE for each row
- begin if inserting then if :NEW.&#34;ID&#34; is null
- then
-   select HS_ADDITIVE_SEQ.nextval into :NEW.&#34;ID&#34; from dual;
-  end if;end if;end;</code></pre></section>
+<section id="#创建sequence和插入时自增trigger"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- Create sequence 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">create</span><span class="w"> </span><span class="n">sequence</span><span class="w"> </span><span class="n">HS_ADDITIVE_SEQ</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">minvalue</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">maxvalue</span><span class="w"> </span><span class="mi">999999999999999999999999999</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">start</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">increment</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">cache</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span></span></span></code></pre></div><p>创建触发器 HS_ADDITIVE_SEQ</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">trigger</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">HS_ADDITIVE_TRG</span><span class="w"> </span><span class="k">BEFORE</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="n">HS_ADDITIVE</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">row</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">begin</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">inserting</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">:</span><span class="k">NEW</span><span class="p">.</span><span class="s2">&#34;ID&#34;</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">then</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">select</span><span class="w"> </span><span class="n">HS_ADDITIVE_SEQ</span><span class="p">.</span><span class="n">nextval</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="p">:</span><span class="k">NEW</span><span class="p">.</span><span class="s2">&#34;ID&#34;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">end</span><span class="w"> </span><span class="k">if</span><span class="p">;</span><span class="k">end</span><span class="w"> </span><span class="k">if</span><span class="p">;</span><span class="k">end</span><span class="p">;</span></span></span></code></pre></div></section>
 <h2 id="#创建只读用户和某些表的同义词">
     创建只读用户和某些表的同义词
     <a class="anchor" name="创建只读用户和某些表的同义词" href="#%e5%88%9b%e5%bb%ba%e5%8f%aa%e8%af%bb%e7%94%a8%e6%88%b7%e5%92%8c%e6%9f%90%e4%ba%9b%e8%a1%a8%e7%9a%84%e5%90%8c%e4%b9%89%e8%af%8d">#</a>
@@ -294,8 +294,8 @@ flashback table tableName to timestamp to_timestamp(&lsquo;&lsquo;2011-02-28 10:
 有了数据库，就可以创建表空间。
 表空间(tablespace)是数据库的逻辑划分，每个数据库至少有一个表空间（称作SYSTEM表空间）。为了便于管理和提高运行效率，可以使用一些附加表空间来划分用户和应用程序。例如：USER表空间供一般用户使用，RBS表空间供回滚段使用。一个表空间只能属于一个数据库。
 <a class="md-link" href="https://zyjustin9.iteye.com/blog/2193804"  >https://zyjustin9.iteye.com/blog/2193804<img class="icon" src="../../img/link.svg" /></a></p>
-<pre tabindex="0"><code>select name from v$database;    //查询当前数据库名
-select instance_name from v$instance;    //查询当前数据库实例名</code></pre><p>Oracle数据库建好后，要想在数据库里建表，必须先为数据库建立用户，并为用户指定表空间。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$database</span><span class="p">;</span><span class="w">    </span><span class="o">//</span><span class="err">查询当前数据库名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">instance_name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">v$instance</span><span class="p">;</span><span class="w">    </span><span class="o">//</span><span class="err">查询当前数据库实例名</span></span></span></code></pre></div><p>Oracle数据库建好后，要想在数据库里建表，必须先为数据库建立用户，并为用户指定表空间。
 有了数据库，表空间和用户，就可以用自定义的用户在自己的表空间创建表了。
 数据库实例 -&gt; 表空间 -&gt; 创建用户 -&gt; 创建表
 <img class="md_img" data-fancybox="gallery" src="https://teakki.top/file/image/5c6e4605b1029f607604555f" alt=""></p>
