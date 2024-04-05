@@ -143,7 +143,9 @@
       }
 
       document.body.addEventListener("click", (event) => {
+        console.log(event.target, 'test');
         if (!event.target.closest("#start") && !event.target.closest(".sidebar-toggle")) {
+          console.log('test22');
           document.getElementById("start").classList.remove("mobile");
           document.getElementsByClassName("sidebar-toggle")[0].classList.remove("mobile");
         }
