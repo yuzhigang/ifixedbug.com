@@ -709,10 +709,7 @@
       document.body.addEventListener("click", (event) => {
         const startElement = document.getElementById("start");
         const sidebarToggleElement = document.getElementsByClassName("sidebar-toggle")[0];
-        if (
-          !startElement.contains(event.target) &&
-          !sidebarToggleElement.contains(event.target)
-        ) {
+        if (event.target !== startElement && event.target !== sidebarToggleElement) {
           startElement.classList.remove("mobile");
           sidebarToggleElement.classList.remove("mobile");
         }
