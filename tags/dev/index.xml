@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dev on iFixedBug.com</title>
-    <link>https://www.ifixedbug.com/tags/dev/</link>
+    <link>https://yuzhigang.github.io/tags/dev/</link>
     <description>Recent content in Dev on iFixedBug.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 05 Apr 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.ifixedbug.com/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yuzhigang.github.io/tags/dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JS知识点总结</title>
-      <link>https://www.ifixedbug.com/posts/js%E6%9D%82%E9%A1%B9/</link>
+      <link>https://yuzhigang.github.io/posts/js%E6%9D%82%E9%A1%B9/</link>
       <pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.ifixedbug.com/posts/js%E6%9D%82%E9%A1%B9/</guid>
+      <guid>https://yuzhigang.github.io/posts/js%E6%9D%82%E9%A1%B9/</guid>
       <description>基础知识 # 移除一个对象的某个属性 # const removeProperty = (propKey, { [propKey]: propValue, ...rest }) =&amp;gt; rest; object = removeProperty(&amp;#39;a&amp;#39;, object);https://stackoverflow.com/questions/208105/how-do-i-remove-a-property-from-a-javascript-object/52301527#52301527&#xA;$ npm install -g cnpm --registry=https://registry.npmmirror.comnpm install -g nrm nrm ls nrm use taobao // 注意npm publish 到 npm官方站点后记得切换到官方源，否则看不到最新的版本 // 旧地址2022年(今年)5月份停止解析 npm config set registry http://registry.npmmirror.com ts项目不识别@符号的相对路径设置 # 在tsconfig.json 或者jsconfig.json中，配置 compilerOptions 的路径，加入：&#xA;&amp;#34;paths&amp;#34;: { &amp;#34;@/*&amp;#34;: [ &amp;#34;./src/*&amp;#34;] } 直接运行js字符串代码 # 引用： https://stackoverflow.com/questions/939326/execute-javascript-code-stored-as-a-string&#xA;方法一：使用 Function，注意：如何为Function添加参数？ //Executes immediately // 注意使用return， 不然没有返回值。 function stringToFunctionAndExecute(str) { let func = new Function(str); return (func()); // &amp;lt;--- note the parenteces } //Executes when called function stringToFunctionOnly(str) { let func = new Function(str); return func; } // 有参数的Function let func = new Function ([arg1[, arg2[, .</description>
     </item>
   </channel>
