@@ -731,7 +731,7 @@ h6 {
           .LBody .LMain > .bread-nav > .breadcrumb > .sep:has(+ .sep) {
             display: none; }
       .LBody .LMain > .bread-nav > .post-meta {
-        margin-top: 2px; }
+        margin-top: 6px; }
     .LBody .LMain > .article-title {
       margin: 0 1rem;
       font-size: 2rem;
