@@ -1292,7 +1292,7 @@ h6 {
       max-width: 100%; }
     .LBody.mobile > .LSide {
       transform: translateX(0); }
-    .LBody.mobile > .main-mask {
+    .LBody.mobile > .LMain > .main-mask {
       pointer-events: inherit; } }
 
 .md-text {
