@@ -358,7 +358,8 @@ h6 {
     width: var(--width-left);
     flex-shrink: 0; }
     .LBody > .RSide > .toc {
-      position: sticky; }
+      position: sticky;
+      top: 10px; }
   .LBody .LSide {
     display: flex;
     flex-direction: column;
