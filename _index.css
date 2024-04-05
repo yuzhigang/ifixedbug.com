@@ -1291,7 +1291,9 @@ h6 {
     .LBody > .LMain {
       max-width: 100%; }
     .LBody.mobile > .LSide {
-      transform: translateX(0); } }
+      transform: translateX(0); }
+    .LBody.mobile > .main-mask {
+      pointer-events: inherit; } }
 
 .md-text {
   padding: 1rem;
