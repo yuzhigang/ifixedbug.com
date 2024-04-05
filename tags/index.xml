@@ -9,31 +9,17 @@
     <lastBuildDate>Fri, 05 Apr 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.ifixedbug.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Dev</title>
+      <link>https://www.ifixedbug.com/tags/dev/</link>
+      <pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.ifixedbug.com/tags/dev/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>设计文档</title>
       <link>https://www.ifixedbug.com/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/</link>
       <pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate>
       <guid>https://www.ifixedbug.com/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Go</title>
-      <link>https://www.ifixedbug.com/tags/go/</link>
-      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.ifixedbug.com/tags/go/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hugo</title>
-      <link>https://www.ifixedbug.com/tags/hugo/</link>
-      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.ifixedbug.com/tags/hugo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>MathJax</title>
-      <link>https://www.ifixedbug.com/tags/mathjax/</link>
-      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.ifixedbug.com/tags/mathjax/</guid>
       <description></description>
     </item>
   </channel>
