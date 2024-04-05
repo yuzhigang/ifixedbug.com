@@ -693,11 +693,11 @@
       document.getElementById("start").classList.toggle("mobile");
       document.getElementsByClassName("sidebar-toggle")[0].classList.toggle("mobile");
     }
-    
+
     document.body.addEventListener("click", (event) => {
       const startElement = document.getElementById("start");
       const sidebarToggleElement = document.getElementsByClassName("sidebar-toggle")[0];
-      if (event.target !== startElement && event.target !== sidebarToggleElement) {
+      if (event.target !== startElement || event.target !== sidebarToggleElement) {
         startElement.classList.remove("mobile");
         sidebarToggleElement.classList.remove("mobile");
       }
