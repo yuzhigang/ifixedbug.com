@@ -352,8 +352,9 @@ h6 {
     max-width: var(--width-main);
     overflow-x: hidden; }
   .LBody > .RSide {
-    justify-self: left;
-    max-height: calc(100% - 8px * 2); }
+    max-height: calc(100% - 8px * 2);
+    position: sticky;
+    width: var(--width-left); }
   .LBody .LSide {
     display: flex;
     flex-direction: column;
