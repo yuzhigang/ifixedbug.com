@@ -6,20 +6,20 @@
     <description>Recent content in Tags on iFixedBug.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 05 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Apr 2024 17:10:22 +0000</lastBuildDate>
     <atom:link href="https://www.ifixedbug.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Dev</title>
-      <link>https://www.ifixedbug.com/tags/dev/</link>
-      <pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.ifixedbug.com/tags/dev/</guid>
-      <description></description>
-    </item>
     <item>
       <title>设计文档</title>
       <link>https://www.ifixedbug.com/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/</link>
-      <pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Apr 2024 17:10:22 +0000</pubDate>
       <guid>https://www.ifixedbug.com/tags/%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dev</title>
+      <link>https://www.ifixedbug.com/tags/dev/</link>
+      <pubDate>Tue, 05 Mar 2024 12:12:22 +0000</pubDate>
+      <guid>https://www.ifixedbug.com/tags/dev/</guid>
       <description></description>
     </item>
   </channel>
