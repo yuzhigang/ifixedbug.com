@@ -141,11 +141,14 @@
       }
 
       document.body.addEventListener("click", (event) => {
-        console.log(event.target, 'test');
-        if (!event.target.closest("#start") && !event.target.closest(".sidebar-toggle")) {
-          console.log('test22');
-          document.getElementById("start").classList.remove("mobile");
-          document.getElementsByClassName("sidebar-toggle")[0].classList.remove("mobile");
+        const startElement = document.getElementById("start");
+        const sidebarToggleElement = document.getElementsByClassName("sidebar-toggle")[0];
+        if (
+          !startElement.contains(event.target) &&
+          !sidebarToggleElement.contains(event.target)
+        ) {
+          startElement.classList.remove("mobile");
+          sidebarToggleElement.classList.remove("mobile");
         }
       });
     });
