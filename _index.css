@@ -1270,14 +1270,10 @@ h6 {
       margin-left: calc(2 * var(--gap-l)); } }
   @media screen and (min-width: 667px) {
     .LBody .LMain {
-      padding-top: calc(2 * var(--gap-l)); }
-      .LBody .LMain > .main-mask {
-        pointer-events: inherit; } }
+      padding-top: calc(2 * var(--gap-l)); } }
   @media screen and (max-width: 667px) {
     .LBody .LMain {
-      padding-top: 1rem; }
-      .LBody .LMain > .main-mask {
-        pointer-events: inherit; } }
+      padding-top: 1rem; } }
 @media screen and (max-width: 667px) {
   .mobile-only {
     display: block !important; }
