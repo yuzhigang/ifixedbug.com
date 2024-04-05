@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>iFixedBug.com</title>
-    <link>https://yuzhigang.github.io/posts/</link>
+    <link>https://www.ifixedbug.com/posts/</link>
     <description>Recent content on iFixedBug.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 05 Apr 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://yuzhigang.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.ifixedbug.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JS知识点总结</title>
-      <link>https://yuzhigang.github.io/posts/js%E6%9D%82%E9%A1%B9/</link>
+      <link>https://www.ifixedbug.com/posts/js%E6%9D%82%E9%A1%B9/</link>
       <pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://yuzhigang.github.io/posts/js%E6%9D%82%E9%A1%B9/</guid>
+      <guid>https://www.ifixedbug.com/posts/js%E6%9D%82%E9%A1%B9/</guid>
       <description>基础知识 # 移除一个对象的某个属性 # const removeProperty = (propKey, { [propKey]: propValue, ...rest }) =&amp;gt; rest; object = removeProperty(&amp;#39;a&amp;#39;, object);https://stackoverflow.com/questions/208105/how-do-i-remove-a-property-from-a-javascript-object/52301527#52301527&#xA;$ npm install -g cnpm --registry=https://registry.npmmirror.comnpm install -g nrm nrm ls nrm use taobao // 注意npm publish 到 npm官方站点后记得切换到官方源，否则看不到最新的版本 // 旧地址2022年(今年)5月份停止解析 npm config set registry http://registry.npmmirror.com ts项目不识别@符号的相对路径设置 # 在tsconfig.json 或者jsconfig.json中，配置 compilerOptions 的路径，加入：&#xA;&amp;#34;paths&amp;#34;: { &amp;#34;@/*&amp;#34;: [ &amp;#34;./src/*&amp;#34;] } 直接运行js字符串代码 # 引用： https://stackoverflow.com/questions/939326/execute-javascript-code-stored-as-a-string&#xA;方法一：使用 Function，注意：如何为Function添加参数？ //Executes immediately // 注意使用return， 不然没有返回值。 function stringToFunctionAndExecute(str) { let func = new Function(str); return (func()); // &amp;lt;--- note the parenteces } //Executes when called function stringToFunctionOnly(str) { let func = new Function(str); return func; } // 有参数的Function let func = new Function ([arg1[, arg2[, .</description>
     </item>
     <item>
       <title>动态api设计文档</title>
-      <link>https://yuzhigang.github.io/posts/%E5%8A%A8%E6%80%81api%E8%AE%BE%E8%AE%A1/</link>
+      <link>https://www.ifixedbug.com/posts/%E5%8A%A8%E6%80%81api%E8%AE%BE%E8%AE%A1/</link>
       <pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://yuzhigang.github.io/posts/%E5%8A%A8%E6%80%81api%E8%AE%BE%E8%AE%A1/</guid>
+      <guid>https://www.ifixedbug.com/posts/%E5%8A%A8%E6%80%81api%E8%AE%BE%E8%AE%A1/</guid>
       <description>设计目标 # 目标： 用模板引擎的方式撰写一段Sql脚本模板，并指明对应的参数含义，发布后前端可以通过 /api/dynamic-api/invoke/my-api-name的方式直接调用，且调用支持多种HTTP方法和以不同的方式传递参数，如：查询参数、body和header参数方式。&#xA;基本过程 # api定义(ApiDefinition): 定义一个api，指明唯一的name和备注信息等，并指明它的sql脚本和数据库链接等。&#xA;连接池(ConnectionPool): 多个api请求数据库的数据时共享同一个连接池，减少建立链接的过程。为api指定连接池，即指明对应的数据库链接地址，则直接执行调用；&#xA;api参数(ApiParameter): 定义一个api需要的参数，该参数的名称需要上述sql脚本使用的脚本保持一致。&#xA;配置动态api的过程如下：&#xA;提供表单，用户填写api的基本信息，如：英文名称、请求方法、备注信息等； 用户填写api运行时要执行的sql脚本，注意这里要使用到模板引擎，有很多判空的逻辑。本系统推荐使用liquid模板。 为该api指明sql脚本执行时调用哪个链接，即使用哪个数据库。弹出连接池列表选中一个。 用户填写api是否支持分页和排序，若支持，则自动含有分页和排序对应的查询参数，如：pageSize\MaxResult\Sorting等。 用户为该api添加参数，参数分为：查询参数、body参数和header参数，另外也需要添加参数的名称。这些参数需要与第2步中，脚本引擎引用的变量名称保持一致。 发布该api，配置该api的可访问permissions。 测试api的可用性，提供参数的输入界面，点击测试后能返回对应的结果。 liquid模板的sql脚本实例如下：&#xA;{% assign param1 = &amp;#39;value1&amp;#39; %} {% assign param2 = &amp;#39;value2&amp;#39; %} {% assign param3 = null %} {% assign sql_query = &amp;#34;SELECT * FROM your_table WHERE 1=1&amp;#34; %} {% if param1 != null %} {% assign sql_query = sql_query | append: &amp;#34; AND column1 = &amp;#39;&amp;#34; | append: param1 | append: &amp;#34;&amp;#39;&amp;#34; %} {% endif %} {% if param2 !</description>
     </item>
     <item>
       <title></title>
-      <link>https://yuzhigang.github.io/archives/</link>
+      <link>https://www.ifixedbug.com/archives/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yuzhigang.github.io/archives/</guid>
+      <guid>https://www.ifixedbug.com/archives/</guid>
       <description></description>
     </item>
   </channel>
