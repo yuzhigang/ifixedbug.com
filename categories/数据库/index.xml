@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on iFixedBug.com</title>
+    <link>https://www.ifixedbug.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on iFixedBug.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 05 Apr 2024 12:12:22 +0000</lastBuildDate>
+    <atom:link href="https://www.ifixedbug.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oracle备忘录</title>
+      <link>https://www.ifixedbug.com/posts/oracle%E5%A4%87%E5%BF%98%E5%BD%95/</link>
+      <pubDate>Fri, 05 Apr 2024 12:12:22 +0000</pubDate>
+      <guid>https://www.ifixedbug.com/posts/oracle%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
+      <description>Oracle # 倒序查询某表的最后100条记录，并正序排列 # select * from (select * from FAC_HEAT_CONSUMPTION t order by id desc) where rownum &amp;lt; 100 order by id select * from (select * from HS_CHEMICAL_IRON t order by id desc OFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY) order by id从0开始，获取100个，OFFSET 0 ROWS可以省略掉。&#xA;删除sys.dbms_scheduler.create_job创建的日志 # begin sys.dbms_scheduler.create_job(job_name =&amp;gt; &amp;#39;ARIMSGTEST.UPDATE_PL_JOB&amp;#39;, job_type =&amp;gt; &amp;#39;STORED_PROCEDURE&amp;#39;, job_action =&amp;gt; &amp;#39;arimsgtest.update_pl_job&amp;#39;, start_date =&amp;gt; to_date(null), repeat_interval =&amp;gt; &amp;#39;Freq=Hourly;Interval=1&amp;#39;, end_date =&amp;gt; to_date(null), job_class =&amp;gt; &amp;#39;DEFAULT_JOB_CLASS&amp;#39;, enabled =&amp;gt; true, auto_drop =&amp;gt; false, comments =&amp;gt; &amp;#39;&amp;#39;); end; / SELECT * FROM User_Scheduler_Jobs; // 查看作业 SELECT * from All_scheduler_job_log where owner= &amp;#39;ARIMSGTEST&amp;#39; and job_name= &amp;#39;UPDATE_PL_JOB2&amp;#39; select * from All_scheduler_job_run_details where owner= &amp;#39;ARIMSGTEST&amp;#39; and job_name= &amp;#39;UPDATE_PL_JOB2&amp;#39; Delete from all_scheduler_job_run_details where owner= &amp;#39;ARIMSGTEST&amp;#39; and job_name= &amp;#39;UPDATE_PL_JOB2&amp;#39;logging_level——日志记录级别（DBMS_SCHEDULER.</description>
+    </item>
+  </channel>
+</rss>

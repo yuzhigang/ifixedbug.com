@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>OPC DA转成OPC UA - iFixedBug.com</title><meta charset="utf-8">
+    <meta name="author" content="ifixedbug">
+    <meta name="Robots" content="All">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="windows-Target" content="_top">
+
+    
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../logo.svg" />
+    <link rel="alt" type="application/rss+xml" href=../../index.xml title="iFixedBug.com" />
+    <link rel="stylesheet" href=../../_index.css>
+
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.css" />
+    <link rel="stylesheet" href="https://fonts.loli.net/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
+
+    
+</head><body><div class="LBody" id="start">
+        <aside class="LSide"><header class="header">
+    <div class="logo-wrap">
+        <a class="avatar" href="../../">
+            <div class="mask"></div>
+            <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
+            <img class="avatar" src="../../avatar.png" onerror="this.classList.add('error');this.src='../../img/unknow.svg';">
+        </a>
+        <a class="title" href="../../">
+            <div class="main" ff="title">ifixedbug</div>
+            <div class="sub normal cap">赴汤蹈火啊琛哥</div>
+            <div class="sub hover cap">毕生终究一无所成。知天命，尽人事。</div>
+        </a>
+    </div>
+    <nav class="menu dis-select"><a class="nav-item active" href="../../">博客</a><a class="nav-item " href="../../docs/">文档</a><a class="nav-item " href="../../search/">搜索</a><a class="nav-item " href="../../about/">关于</a></nav>
+</header><div class="widgets"><div class="widget search"><widget class="widget-wrapper search">
+    <div class="widget-body">
+        <div class="search-wrapper" id="search">
+            <div class="search-form">
+                <input type="text" class="search-input" id="search-input" placeholder="Search" AUTOCOMPLETE="off" >
+                <svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg>
+            </div>
+        </div>
+    </div>
+    <script>
+        var searchInput = document.getElementById("search-input");
+        searchInput.addEventListener('keydown', (event) => {
+            var inputValue = encodeURIComponent(searchInput.value.trim());
+            if (inputValue && event.keyCode == 13) {
+                window.open(`${window.location.protocol}//${window.location.host}/search?key=${inputValue}`);
+            }
+        });
+    </script>
+</widget></div><div class="widget toc"><widgets class="widget-wrapper toc">
+    <div class="widget-header cap dis-select">
+        <a class="name" href="#">OPC DA转成OPC UA</a>
+    </div>
+    <div class="widget-body fs14">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#opc-daclassic-和opc-ua的链接方法">OPC DA（Classic） 和OPC UA的链接方法</a></li>
+    <li><a href="#modbus">Modbus</a></li>
+  </ul>
+</nav>
+    </div>
+</widgets></div></div>
+<footer class="footer dis-select">
+    <div class="social-wrap"><a class="social" href="https://weibo.com/u/1059010184" target="_blank">
+            <img src="../../social/weibo.svg">
+        </a><a class="social" href="https://github.com/yuzhigang" target="_blank">
+            <img src="../../social/github.svg">
+        </a></div>
+</footer></aside>
+        <main class="LMain"><header class="header mobile-only">
+  <div class="logo-wrap">
+      <a class="avatar" href="../../">
+          <div class="mask"></div>
+          <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
+          <img class="avatar" src="../../avatar.png" onerror="this.classList.add('error');this.src='../../img/unknow.svg';">
+      </a>
+      <a class="title" href="../../">
+          <div class="main" ff="title">ifixedbug</div>
+          <div class="sub normal cap">赴汤蹈火啊琛哥</div>
+          <div class="sub hover cap">毕生终究一无所成。知天命，尽人事。</div>
+      </a>
+  </div>
+</header><div class="bread-nav fs14">
+  <div class="breadcrumb"><a class="cap item" href="../../categories/%e5%b7%a5%e6%8e%a7">工控</a>
+      <span class="sep"> </span>
+      <span class="sep">|</span><a class="cap item" href="../../tags/%e5%b7%a5%e6%8e%a7">工控</a>
+      <span class="sep"> </span><a class="cap item" href="../../tags/opc-ua">OPC UA</a>
+      <span class="sep"> </span></div>
+  <div class="post-meta">Zigzag 发布于 2024-03-05 12:12:22</div>
+</div>
+
+<article class="md-text content post">
+  <h1 class="article-title">OPC DA转成OPC UA</h1><blockquote class="description">OPC DA转成OPC UA，实现网口通信</blockquote><section></section>
+<h1 id="#opc">
+    OPC
+    <a class="anchor" name="opc" href="#opc">#</a>
+</h1>
+<section id="#opc"></section>
+<h2 id="#opc-daclassic-和opc-ua的链接方法">
+    OPC DA（Classic） 和OPC UA的链接方法
+    <a class="anchor" name="opc-daclassic-和opc-ua的链接方法" href="#opc-daclassic-%e5%92%8copc-ua%e7%9a%84%e9%93%be%e6%8e%a5%e6%96%b9%e6%b3%95">#</a>
+</h2>
+<section id="#opc-daclassic-和opc-ua的链接方法"><p>在仅支持OPC DA 2.0的OPC SERVER上部署代理程序（COM Wrapper），然后发布成 UA SERVER。从：
+<a class="md-link" href="https://github.com/OPCFoundation/UA-.NET-Legacy"  >https://github.com/OPCFoundation/UA-.NET-Legacy<img class="icon" src="../../img/link.svg" /></a> 下载兼容版的UA-.NET，因为是源代码基于.net framework3.5编写的，故3.5~4.5.1之间的framework都可以运行。因为要兼容windows XP系统，XP最新只能到Framework4.0， 故改成4.0的框架。
+几个重要的配置，在Opc.Ua.ComServerWrapper.Config.xml文件中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">BaseAddresses</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">ua:String</span><span class="p">&gt;</span>opc.tcp://localhost:48400/UA/ComServerWrapper<span class="p">&lt;/</span><span class="nt">ua:String</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">ua:String</span><span class="p">&gt;</span>http://localhost:48401/UA/ComServerWrapper<span class="p">&lt;/</span><span class="nt">ua:String</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">BaseAddresses</span><span class="p">&gt;</span></span></span></code></pre></div><p>以上指明发布的ua地址，tcp和http都可以。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"> <span class="p">&lt;</span><span class="nt">ServerSecurityPolicy</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">SecurityMode</span><span class="p">&gt;</span>None_1<span class="p">&lt;/</span><span class="nt">SecurityMode</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">SecurityPolicyUri</span><span class="p">&gt;</span>http://opcfoundation.org/UA/SecurityPolicy#None<span class="p">&lt;/</span><span class="nt">SecurityPolicyUri</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">SecurityLevel</span><span class="p">&gt;</span>0<span class="p">&lt;/</span><span class="nt">SecurityLevel</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ServerSecurityPolicy</span><span class="p">&gt;</span></span></span></code></pre></div><p>以上指明认证方式，把其他的去掉，只保留不需认证方式。其他认证方式暂时没有研究。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ComClientConfiguration</span> <span class="na">i:type</span><span class="o">=</span><span class="s">&#34;ComDaClientConfiguration&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">ServerUrl</span><span class="p">&gt;</span>opc.com://localhost/ProcessIT.SimulationSvr.1<span class="p">&lt;/</span><span class="nt">ServerUrl</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">ServerName</span><span class="p">&gt;</span>DA<span class="p">&lt;/</span><span class="nt">ServerName</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">MaxReconnectWait</span><span class="p">&gt;</span>10000<span class="p">&lt;/</span><span class="nt">MaxReconnectWait</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">SeperatorChars</span><span class="p">&gt;&lt;/</span><span class="nt">SeperatorChars</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">AvailableLocales</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">ua:String</span><span class="p">&gt;</span>en-US<span class="p">&lt;/</span><span class="nt">ua:String</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">ua:String</span><span class="p">&gt;</span>de-DE<span class="p">&lt;/</span><span class="nt">ua:String</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">ua:String</span><span class="p">&gt;</span>ja-JP<span class="p">&lt;/</span><span class="nt">ua:String</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">AvailableLocales</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">BrowseToNotSupported</span><span class="p">&gt;</span>false<span class="p">&lt;/</span><span class="nt">BrowseToNotSupported</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ComClientConfiguration</span><span class="p">&gt;</span></span></span></code></pre></div><p>以上配置本地的OPC Server地址和名称。该配置节可以<strong>有多个</strong>，ServerName可以换成语义化的名称，并不强求一致。
+运行UA COM Server Wrapper.sln项目，编译后有UA COM Server Wrapper.exe，直接使用会报错，需要拷贝Opc.Ua.CertificateGenerator.exe，产生证书。
+把该程序拷贝到OPC Server的机器上，配置本地的OPC Server地址和名称。双击UA COM Server Wrapper.exe运行，会产生一个地址：opc.tcp://39.107.78.139:8888/UA/ComServerWrapper，使用一般的OPC UA 客户端，点击链接即可浏览数据了。</p>
+</section>
+<h2 id="#modbus">
+    Modbus
+    <a class="anchor" name="modbus" href="#modbus">#</a>
+</h2>
+<section id="#modbus"><p>线圈状态/输入状态/保持寄存器/输入寄存器: coilStatus/inputStatus/holdingRegister/inputRegister</p>
+</section>
+</article>
+<script src="https://giscus.app/client.js"
+        data-repo="yuzhigang/yuzhigang.github.io"
+        data-repo-id="R_kgDOLqDc5Q"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOLqDc5c4CeeJ5"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script><div class="float-panel mobile-only blur" style="display:none">
+  <button type="button" class="sidebar-toggle" onclick="float_panel_click()">
+    <svg class="icon" style="width:1em;height:1em;vertical-align:middle;fill:currentColor;overflow:hidden" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301">
+      <path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path>
+      <path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path>
+    </svg>
+  </button>
+  <script>
+    float_panel_click = () => {
+      document.getElementById("start").classList.toggle("mobile");
+      document.getElementsByClassName("sidebar-toggle")[0].classList.toggle("mobile");
+    }
+  </script>
+</div></main>
+        
+    </div>
+</body><script src="../../scripts/tableOfContents.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.9/MathJax.js" defer></script>
+
+
+
+
+<script src="../../scripts/mathjax.js"></script>
+</html>

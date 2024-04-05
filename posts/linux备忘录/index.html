@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Linux备忘 - iFixedBug.com</title><meta charset="utf-8">
+    <meta name="author" content="ifixedbug">
+    <meta name="Robots" content="All">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="windows-Target" content="_top">
+
+    
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../logo.svg" />
+    <link rel="alt" type="application/rss+xml" href=../../index.xml title="iFixedBug.com" />
+    <link rel="stylesheet" href=../../_index.css>
+
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.css" />
+    <link rel="stylesheet" href="https://fonts.loli.net/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
+
+    
+</head><body><div class="LBody" id="start">
+        <aside class="LSide"><header class="header">
+    <div class="logo-wrap">
+        <a class="avatar" href="../../">
+            <div class="mask"></div>
+            <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
+            <img class="avatar" src="../../avatar.png" onerror="this.classList.add('error');this.src='../../img/unknow.svg';">
+        </a>
+        <a class="title" href="../../">
+            <div class="main" ff="title">ifixedbug</div>
+            <div class="sub normal cap">赴汤蹈火啊琛哥</div>
+            <div class="sub hover cap">毕生终究一无所成。知天命，尽人事。</div>
+        </a>
+    </div>
+    <nav class="menu dis-select"><a class="nav-item active" href="../../">博客</a><a class="nav-item " href="../../docs/">文档</a><a class="nav-item " href="../../search/">搜索</a><a class="nav-item " href="../../about/">关于</a></nav>
+</header><div class="widgets"><div class="widget search"><widget class="widget-wrapper search">
+    <div class="widget-body">
+        <div class="search-wrapper" id="search">
+            <div class="search-form">
+                <input type="text" class="search-input" id="search-input" placeholder="Search" AUTOCOMPLETE="off" >
+                <svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg>
+            </div>
+        </div>
+    </div>
+    <script>
+        var searchInput = document.getElementById("search-input");
+        searchInput.addEventListener('keydown', (event) => {
+            var inputValue = encodeURIComponent(searchInput.value.trim());
+            if (inputValue && event.keyCode == 13) {
+                window.open(`${window.location.protocol}//${window.location.host}/search?key=${inputValue}`);
+            }
+        });
+    </script>
+</widget></div><div class="widget toc"><widgets class="widget-wrapper toc">
+    <div class="widget-header cap dis-select">
+        <a class="name" href="#">Linux备忘</a>
+    </div>
+    <div class="widget-body fs14">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#wsl2安装ubuntu2004-lts版本">wsl2安装Ubuntu20.04 LTS版本</a></li>
+    <li><a href="#ssh协议">SSH协议</a></li>
+    <li><a href="#密码管理问题">密码管理问题</a></li>
+  </ul>
+</nav>
+    </div>
+</widgets></div></div>
+<footer class="footer dis-select">
+    <div class="social-wrap"><a class="social" href="https://weibo.com/u/1059010184" target="_blank">
+            <img src="../../social/weibo.svg">
+        </a><a class="social" href="https://github.com/yuzhigang" target="_blank">
+            <img src="../../social/github.svg">
+        </a></div>
+</footer></aside>
+        <main class="LMain"><header class="header mobile-only">
+  <div class="logo-wrap">
+      <a class="avatar" href="../../">
+          <div class="mask"></div>
+          <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
+          <img class="avatar" src="../../avatar.png" onerror="this.classList.add('error');this.src='../../img/unknow.svg';">
+      </a>
+      <a class="title" href="../../">
+          <div class="main" ff="title">ifixedbug</div>
+          <div class="sub normal cap">赴汤蹈火啊琛哥</div>
+          <div class="sub hover cap">毕生终究一无所成。知天命，尽人事。</div>
+      </a>
+  </div>
+</header><div class="bread-nav fs14">
+  <div class="breadcrumb"><a class="cap item" href="../../categories/linux">linux</a>
+      <span class="sep"> </span>
+      <span class="sep">|</span><a class="cap item" href="../../tags/dev">dev</a>
+      <span class="sep"> </span></div>
+  <div class="post-meta">Zigzag 发布于 2024-04-05 12:12:22</div>
+</div>
+
+<article class="md-text content post">
+  <h1 class="article-title">Linux备忘</h1><blockquote class="description">Linux备忘，一些遇到的坑</blockquote><section></section>
+<h1 id="#linux">
+    Linux
+    <a class="anchor" name="linux" href="#linux">#</a>
+</h1>
+<section id="#linux"><pre tabindex="0"><code>npm install -g nrm
+nrm ls
+nrm use taobao</code></pre><p>MacBook 安装brew以及修改镜像</p>
+<pre tabindex="0"><code>cd &#34;$(brew --repo)&#34;
+git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git
+cd &#34;$(brew --repo)/Library/Taps/homebrew/homebrew-core&#34;
+git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git
+echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#39; &gt;&gt; ~/.zshrcsource ~/.zshrc</code></pre><p>参考网址：https://www.cnblogs.com/feiquan/p/13267284.html</p>
+</section>
+<h2 id="#wsl2安装ubuntu2004-lts版本">
+    wsl2安装Ubuntu20.04 LTS版本
+    <a class="anchor" name="wsl2安装ubuntu2004-lts版本" href="#wsl2%e5%ae%89%e8%a3%85ubuntu2004-lts%e7%89%88%e6%9c%ac">#</a>
+</h2>
+<section id="#wsl2安装ubuntu2004-lts版本"><p>添加删除命令执行后要重启。 安装wsl_update_x64.msi 要重启。在微软商店安装最新版。
+记住在ps中设置Ubuntu20.04默认用户的口令为：
+ubuntu2004 config &ndash;default-user root
+ubuntu2004 是win10系统中存在的命令。</p>
+</section>
+<h2 id="#ssh协议">
+    SSH协议
+    <a class="anchor" name="ssh协议" href="#ssh%e5%8d%8f%e8%ae%ae">#</a>
+</h2>
+<section id="#ssh协议"><p>openssh是一个可以用来产生rsa密钥对的命令行工具。需要更新到最新版，以前的安装的太老了。导致使用的时候有错误（chmod 600 命令于此有关）。</p>
+<ol>
+<li>下载最新的openssh产生密钥对</li>
+</ol>
+<pre tabindex="0"><code>ssh-keygen -t rsa</code></pre><ol>
+<li>密钥对会在/home/Zigzag/.ssh/下，此时需要对id_rsa进行权限变更，可以使用cmder执行如下命令：</li>
+</ol>
+<pre tabindex="0"><code>chmod 600 /home/Zigzag/.ssh/id_rsa</code></pre><ol>
+<li>把id_rsa.pub字符串拷贝到centos服务器上，使用cmder命令：</li>
+</ol>
+<pre tabindex="0"><code>scp id_rsa.pub root@123.45.67.8:~/.ssh</code></pre><p>会提示输入密码，输入后即可，点击yes，会在本地填入known_hosts，是来与服务器的公钥。等待客户端加密使用。</p>
+<ol>
+<li>登录CentOS服务器，将id_rsa.pub里的文件写入到~/.ssh/authorized_keys里。</li>
+</ol>
+<pre tabindex="0"><code>cat ./id_rsa.pub &gt;&gt; authorized_keys</code></pre><p>然后重启ssh服务</p>
+<pre tabindex="0"><code>service sshd restart</code></pre><p>在VS Code上创建一个config文件：</p>
+<pre tabindex="0"><code>Host 123.56.82.241
+  HostName 123.56.82.241
+  User root
+  IdentityFile /home/Zigzag/.ssh/id_rsa</code></pre><p>SSH是协议，OpenSSH是它的开源实现。linux系统自带，用于主机的服务端。
+（1）远程主机收到用户的登录请求，把自己的公钥发给用户。
+（2）用户使用这个公钥，将登录密码加密后，发送回来。
+（3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。
+中间人将伪造的公钥发给用户怎么办？客户端会提示用户主机发过来的公钥指纹，等待用户手动确认。该过程用户端什么都没有。</p>
+<p>但是每次都输密码，也太麻烦了。新的办法：</p>
+<ol>
+<li>用户将自己的公钥储存在远程主机上。</li>
+<li>用户执行登录请求。</li>
+<li>远程主机会向用户发送一段随机字符串。</li>
+<li>用户用自己的私钥加密后，再发回来。</li>
+<li>远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。</li>
+</ol>
+<p>思考：<strong>如果主机的登录口令变了，SSH public key的方式登录是否还凑效？</strong>
+用户端怎么产生公钥和把公钥放到主机上？</p>
+<ol>
+<li>用户使用ssh-keygen命令产生公私钥匙对，一般会在$HOME/.ssh/目录下，会新生成两个文件：id_rsa.pub和id_rsa。前者是你的公钥，后者是你的私钥。</li>
+<li>使用ssh-copy-id user@host将公钥传送到远程主机host上面。</li>
+<li>检查远程主机的/etc/ssh/sshd_config这个文件：</li>
+</ol>
+<pre tabindex="0"><code>   RSAAuthentication yes
+　　 PubkeyAuthentication yes
+　　 AuthorizedKeysFile .ssh/authorized_keys</code></pre><ol>
+<li>重启服务<em>service ssh restart</em></li>
+</ol>
+<p><strong>思考：本地是否可以有多个公私钥对？主机端是如何管理多个公钥的？</strong>
+远程主机将用户的公钥，保存在登录后的用户主目录的$HOME/.ssh/authorized_keys文件中。公钥就是一段字符串，只要把它追加在authorized_keys文件的末尾就行了。
+<a class="md-link" href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html"  >https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html<img class="icon" src="../../img/link.svg" /></a></p>
+</section>
+<h2 id="#密码管理问题">
+    密码管理问题
+    <a class="anchor" name="密码管理问题" href="#%e5%af%86%e7%a0%81%e7%ae%a1%e7%90%86%e9%97%ae%e9%a2%98">#</a>
+</h2>
+<section id="#密码管理问题"><p>金属学会服务器提示强制密码修改，但是修改完总是自动断掉。后来让从阿里云后台修改了密码，一切稳定。
+登录后，我修改了变更策略，不让它过期。</p>
+<pre tabindex="0"><code>cat /etc/login.defs：
+
+PASS_MAX_DAYS 90 #9999此处设置过期时间
+PASS_MIN_LEN 12
+PASS_MIN_DAYS 7
+PASS_WARN_AGE 30
+UMASK 077</code></pre><p>2020.4.20再次出现该问题，原因：修改了 /etc/login.defs下参数时，会立即生效，但是它只对修改后创建的用户生效。
+解决办法，使用指令：</p>
+<pre tabindex="0"><code>chage -M 20000 root // 将root帐户的有效期设置为2000天后
+chage -l root // 查看是否生效</code></pre><p><a class="md-link" href="https://www.cnblogs.com/kevingrace/p/9670160.html"  >https://www.cnblogs.com/kevingrace/p/9670160.html<img class="icon" src="../../img/link.svg" /></a>
+但报错，无法写入：failure while writing changes to /etc/shadow
+原因： 金属学会的安全防控软件保护了该文件，防止被写。</p>
+<p>2020.4.25
+jar后缀的文件无法上传。怀疑在阿里云后台修改密码后，以前设置安全过滤策略不再生效了。需要重新添加白名单。</p>
+</section>
+</article>
+<script src="https://giscus.app/client.js"
+        data-repo="yuzhigang/yuzhigang.github.io"
+        data-repo-id="R_kgDOLqDc5Q"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOLqDc5c4CeeJ5"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script><div class="float-panel mobile-only blur" style="display:none">
+  <button type="button" class="sidebar-toggle" onclick="float_panel_click()">
+    <svg class="icon" style="width:1em;height:1em;vertical-align:middle;fill:currentColor;overflow:hidden" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301">
+      <path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path>
+      <path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path>
+    </svg>
+  </button>
+  <script>
+    float_panel_click = () => {
+      document.getElementById("start").classList.toggle("mobile");
+      document.getElementsByClassName("sidebar-toggle")[0].classList.toggle("mobile");
+    }
+  </script>
+</div></main>
+        
+    </div>
+</body><script src="../../scripts/tableOfContents.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.9/MathJax.js" defer></script>
+
+
+
+
+<script src="../../scripts/mathjax.js"></script>
+</html>
