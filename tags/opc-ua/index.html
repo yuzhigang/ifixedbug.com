@@ -113,15 +113,29 @@
     </svg>
   </button>
   <script>
-    float_panel_click = () => {
-      document.getElementById("start").classList.toggle("mobile");
-      document.getElementsByClassName("sidebar-toggle")[0].classList.toggle("mobile");
-    }
-    document.body.addEventListener("click", (event) => {
-      if (!event.target.closest("#start") && !event.target.closest(".sidebar-toggle")) {
-        document.getElementById("start").classList.remove("mobile");
-        document.getElementsByClassName("sidebar-toggle")[0].classList.remove("mobile");
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    document.addEventListener("DOMContentLoaded", function () {
+      float_panel_click = () => {
+        document.getElementById("start").classList.toggle("mobile");
+        document.getElementsByClassName("sidebar-toggle")[0].classList.toggle("mobile");
       }
+
+      document.body.addEventListener("click", (event) => {
+        if (!event.target.closest("#start") && !event.target.closest(".sidebar-toggle")) {
+          document.getElementById("start").classList.remove("mobile");
+          document.getElementsByClassName("sidebar-toggle")[0].classList.remove("mobile");
+        }
+      });
     });
   </script>
 </div></main>
