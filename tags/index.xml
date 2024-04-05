@@ -6,6 +6,28 @@
     <description>Recent content in Tags on Hugo Stellar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.ifixedbug.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://www.ifixedbug.com/tags/go/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.ifixedbug.com/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hugo</title>
+      <link>https://www.ifixedbug.com/tags/hugo/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.ifixedbug.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MathJax</title>
+      <link>https://www.ifixedbug.com/tags/mathjax/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.ifixedbug.com/tags/mathjax/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

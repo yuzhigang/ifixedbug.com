@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo Stellar</title>
-    <link>https://www.ifixedbug.com/posts/</link>
-    <description>Recent content on Hugo Stellar</description>
+    <title>建站 on Hugo Stellar</title>
+    <link>https://www.ifixedbug.com/categories/%E5%BB%BA%E7%AB%99/</link>
+    <description>Recent content in 建站 on Hugo Stellar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.ifixedbug.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.ifixedbug.com/categories/%E5%BB%BA%E7%AB%99/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>(Hu)go Template Primer</title>
       <link>https://www.ifixedbug.com/posts/goisforlovers/</link>
@@ -35,13 +35,6 @@
       <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
       <guid>https://www.ifixedbug.com/posts/%E6%89%A9%E5%B1%95%E8%AF%AD%E6%B3%95%E6%94%AF%E6%8C%81/</guid>
       <description>MkDocs 语法 # Hint # ::: markdown { title=Example, render=true } !!! note `markdown` text ::: markdown { title=Example, render=true } !!! note Custom Title `markdown` text&#xA;::: markdown { title=Example, render=true } ??? note Collapsible `markdown` text ::: markdown { title=Example, render=true } ???+ note Collapsible Open `markdown` text&#xA;Hint 允许包含和嵌套任意内容。&#xA;???+ bug ???+ bug ???+ bug Nested bugs.MkDocs 一共支持 12 种 Hint。&#xA;::: !!! note markdown text ::: !</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://www.ifixedbug.com/archives/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.ifixedbug.com/archives/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>

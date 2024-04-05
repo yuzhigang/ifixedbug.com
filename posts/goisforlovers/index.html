@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head><title>(Hu)go Template Primer - www.ifixedbug.com</title><meta charset="utf-8">
-    <meta name="author" content="">
+<html lang="en"><head><title>(Hu)go Template Primer - Hugo Stellar</title><meta charset="utf-8">
+    <meta name="author" content="Author">
     <meta name="Robots" content="All">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
@@ -9,9 +9,9 @@
 
     
 
-    <link rel="shortcut icon" type="image/x-icon" href="/" />
-    <link rel="alt" type="application/rss+xml" href=/index.xml title="www.ifixedbug.com" />
-    <link rel="stylesheet" href=/_index.css>
+    <link rel="shortcut icon" type="image/x-icon" href="../../logo.svg" />
+    <link rel="alt" type="application/rss+xml" href=../../index.xml title="Hugo Stellar" />
+    <link rel="stylesheet" href=../../_index.css>
 
     <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.css" />
     <link rel="stylesheet" href="https://fonts.loli.net/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
@@ -20,18 +20,18 @@
 </head><body><div class="LBody" id="start">
         <aside class="LSide"><header class="header">
     <div class="logo-wrap">
-        <a class="avatar" href="/">
+        <a class="avatar" href="../../">
             <div class="mask"></div>
             <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
-            <img class="avatar" src="" onerror="this.classList.add('error');this.src='/img/unknow.svg';">
+            <img class="avatar" src="../../avatar.png" onerror="this.classList.add('error');this.src='../../img/unknow.svg';">
         </a>
-        <a class="title" href="/">
-            <div class="main" ff="title"></div>
-            <div class="sub normal cap"></div>
-            <div class="sub hover cap"></div>
+        <a class="title" href="../../">
+            <div class="main" ff="title">Author</div>
+            <div class="sub normal cap">description</div>
+            <div class="sub hover cap">deep description</div>
         </a>
     </div>
-    <nav class="menu dis-select"></nav>
+    <nav class="menu dis-select"><a class="nav-item active" href="../../">博客</a><a class="nav-item " href="../../docs/">文档</a><a class="nav-item " href="../../search/">搜索</a><a class="nav-item " href="../../about/">关于</a></nav>
 </header><div class="widgets"><div class="widget search"><widget class="widget-wrapper search">
     <div class="widget-body">
         <div class="search-wrapper" id="search">
@@ -79,38 +79,44 @@
     </div>
 </widgets></div></div>
 <footer class="footer dis-select">
-    <div class="social-wrap"></div>
+    <div class="social-wrap"><a class="social" href="https://gohugo.io/" target="_blank">
+            <img src="../../social/hugo.png">
+        </a><a class="social" href="https://github.com/" target="_blank">
+            <img src="../../social/github.svg">
+        </a><a class="social" href="https://space.bilibili.com/" target="_blank">
+            <img src="../../social/bilibili.ico">
+        </a></div>
 </footer></aside>
         <main class="LMain"><header class="header mobile-only">
   <div class="logo-wrap">
-      <a class="avatar" href="/">
+      <a class="avatar" href="../../">
           <div class="mask"></div>
           <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
-          <img class="avatar" src="" onerror="this.classList.add('error');this.src='/img/unknow.svg';">
+          <img class="avatar" src="../../avatar.png" onerror="this.classList.add('error');this.src='../../img/unknow.svg';">
       </a>
-      <a class="title" href="/">
-          <div class="main" ff="title"></div>
-          <div class="sub normal cap"></div>
-          <div class="sub hover cap"></div>
+      <a class="title" href="../../">
+          <div class="main" ff="title">Author</div>
+          <div class="sub normal cap">description</div>
+          <div class="sub hover cap">deep description</div>
       </a>
   </div>
 </header><div class="bread-nav fs14">
-  <div class="breadcrumb"><a class="cap item" href="/categories/%e5%bb%ba%e7%ab%99">建站</a>
+  <div class="breadcrumb"><a class="cap item" href="../../categories/%e5%bb%ba%e7%ab%99">建站</a>
       <span class="sep"> </span>
-      <span class="sep">|</span><a class="cap item" href="/tags/go">go</a>
-      <span class="sep"> </span><a class="cap item" href="/tags/hugo">hugo</a>
+      <span class="sep">|</span><a class="cap item" href="../../tags/go">go</a>
+      <span class="sep"> </span><a class="cap item" href="../../tags/hugo">hugo</a>
       <span class="sep"> </span></div>
   <span class="post-meta">发布于 2023-2-12</span>
 </div>
 
 <article class="md-text content post">
-  <h1 class="article-title">(Hu)go Template Primer</h1><section><p>Hugo uses the excellent <a class="md-link" href="https://golang.org/"  >Go<img class="icon" src="/img/link.svg" /></a> <a class="md-link" href="https://golang.org/pkg/html/template/"  >html/template<img class="icon" src="/img/link.svg" /></a> library for
+  <h1 class="article-title">(Hu)go Template Primer</h1><section><p>Hugo uses the excellent <a class="md-link" href="https://golang.org/"  >Go<img class="icon" src="../../img/link.svg" /></a> <a class="md-link" href="https://golang.org/pkg/html/template/"  >html/template<img class="icon" src="../../img/link.svg" /></a> library for
 its template engine. It is an extremely lightweight engine that provides a very
 small amount of logic. In our experience that it is just the right amount of
 logic to be able to create a good static website. If you have used other
 template systems from different languages or frameworks you will find a lot of
 similarities in Go templates.</p>
-<p>This document is a brief primer on using Go templates. The <a class="md-link" href="https://golang.org/pkg/html/template/"  >Go docs<img class="icon" src="/img/link.svg" /></a>
+<p>This document is a brief primer on using Go templates. The <a class="md-link" href="https://golang.org/pkg/html/template/"  >Go docs<img class="icon" src="../../img/link.svg" /></a>
 provide more details.</p>
 </section>
 <h2 id="#introduction-to-go-templates">
@@ -122,7 +128,7 @@ belief that only the most basic of logic belongs in the template or view layer.
 One consequence of this simplicity is that Go templates parse very quickly.</p>
 <p>A unique characteristic of Go templates is they are content aware. Variables and
 content will be sanitized depending on the context of where they are used. More
-details can be found in the <a class="md-link" href="https://golang.org/pkg/html/template/"  >Go docs<img class="icon" src="/img/link.svg" /></a>.</p>
+details can be found in the <a class="md-link" href="https://golang.org/pkg/html/template/"  >Go docs<img class="icon" src="../../img/link.svg" /></a>.</p>
 </section>
 <h3 id="#basic-syntax">
     Basic Syntax
@@ -153,7 +159,7 @@ functions.</p>
 <section id="#variables"><p>Each Go template has a struct (object) made available to it. In hugo each
 template is passed either a page or a node struct depending on which type of
 page you are rendering. More details are available on the
-<a class="md-link" href="/layout/variables"  >variables<img class="icon" src="/img/link.svg" /></a> page.</p>
+<a class="md-link" href="../../layout/variables"  >variables<img class="icon" src="../../img/link.svg" /></a> page.</p>
 <p>A variable is accessed by referencing the variable name.</p>
 <pre><code>&lt;title&gt;{{ .Title }}&lt;/title&gt;
 </code></pre>
@@ -168,8 +174,8 @@ page you are rendering. More details are available on the
 </h3>
 <section id="#functions"><p>Go template ship with a few functions which provide basic functionality. The Go
 template system also provides a mechanism for applications to extend the
-available functions with their own. <a class="md-link" href="/layout/functions"  >Hugo template
-functions<img class="icon" src="/img/link.svg" /></a> provide some additional functionality we believe
+available functions with their own. <a class="md-link" href="../../layout/functions"  >Hugo template
+functions<img class="icon" src="../../img/link.svg" /></a> provide some additional functionality we believe
 are useful for building websites. Functions are called by using their name
 followed by the required parameters separated by spaces. Template
 functions cannot be added without recompiling hugo.</p>
@@ -331,7 +337,7 @@ you want to inside of your templates.</p>
     <a class="anchor" name="using-content-page-parameters" href="#using-content-page-parameters">#</a>
 </h3>
 <section id="#using-content-page-parameters"><p>In each piece of content you can provide variables to be used by the
-templates. This happens in the <a class="md-link" href="/content/front-matter"  >front matter<img class="icon" src="/img/link.svg" /></a>.</p>
+templates. This happens in the <a class="md-link" href="../../content/front-matter"  >front matter<img class="icon" src="../../img/link.svg" /></a>.</p>
 <p>An example of this is used in this documentation site. Most of the pages
 benefit from having the table of contents provided. Sometimes the TOC just
 doesn&rsquo;t make a lot of sense. We&rsquo;ve defined a variable in our front matter
@@ -400,12 +406,12 @@ so, such as in this example:</p>
   </script>
 </div></main>
     </div>
-</body><script src="/scripts/tableOfContents.js"></script>
+</body><script src="../../scripts/tableOfContents.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.9/MathJax.js" defer></script>
 
 
 
 
-<script src="/scripts/mathjax.js"></script>
+<script src="../../scripts/mathjax.js"></script>
 </html>
