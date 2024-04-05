@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>扩展语法支持 - www.ifixedbug.com</title><meta charset="utf-8">
+    <meta name="author" content="">
+    <meta name="Robots" content="All">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="windows-Target" content="_top">
+
+    
+
+    <link rel="shortcut icon" type="image/x-icon" href="/" />
+    <link rel="alt" type="application/rss+xml" href=/index.xml title="www.ifixedbug.com" />
+    <link rel="stylesheet" href=/_index.css>
+
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.css" />
+    <link rel="stylesheet" href="https://fonts.loli.net/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
+
+    
+</head><body><div class="LBody" id="start">
+        <aside class="LSide"><header class="header">
+    <div class="logo-wrap">
+        <a class="avatar" href="/">
+            <div class="mask"></div>
+            <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
+            <img class="avatar" src="" onerror="this.classList.add('error');this.src='/img/unknow.svg';">
+        </a>
+        <a class="title" href="/">
+            <div class="main" ff="title"></div>
+            <div class="sub normal cap"></div>
+            <div class="sub hover cap"></div>
+        </a>
+    </div>
+    <nav class="menu dis-select"></nav>
+</header><div class="widgets"><div class="widget search"><widget class="widget-wrapper search">
+    <div class="widget-body">
+        <div class="search-wrapper" id="search">
+            <div class="search-form">
+                <input type="text" class="search-input" id="search-input" placeholder="Search" AUTOCOMPLETE="off" >
+                <svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg>
+            </div>
+        </div>
+    </div>
+    <script>
+        var searchInput = document.getElementById("search-input");
+        searchInput.addEventListener('keydown', (event) => {
+            var inputValue = encodeURIComponent(searchInput.value.trim());
+            if (inputValue && event.keyCode == 13) {
+                window.open(`${window.location.protocol}//${window.location.host}/search?key=${inputValue}`);
+            }
+        });
+    </script>
+</widget></div><div class="widget toc"><widgets class="widget-wrapper toc">
+    <div class="widget-header cap dis-select">
+        <a class="name" href="#">扩展语法支持</a>
+    </div>
+    <div class="widget-body fs14">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#mkdocs-语法">MkDocs 语法</a>
+      <ul>
+        <li><a href="#hint">Hint</a></li>
+        <li><a href="#columns">Columns</a></li>
+        <li><a href="#tabs">Tabs</a></li>
+      </ul>
+    </li>
+    <li><a href="#stellar-语法">Stellar 语法</a>
+      <ul>
+        <li><a href="#inline">Inline</a></li>
+        <li><a href="#display">Display</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</widgets></div></div>
+<footer class="footer dis-select">
+    <div class="social-wrap"></div>
+</footer></aside>
+        <main class="LMain"><header class="header mobile-only">
+  <div class="logo-wrap">
+      <a class="avatar" href="/">
+          <div class="mask"></div>
+          <div class="bg" style="background-image:url(/img/rainbow64@3x.webp)"></div>
+          <img class="avatar" src="" onerror="this.classList.add('error');this.src='/img/unknow.svg';">
+      </a>
+      <a class="title" href="/">
+          <div class="main" ff="title"></div>
+          <div class="sub normal cap"></div>
+          <div class="sub hover cap"></div>
+      </a>
+  </div>
+</header><div class="bread-nav fs14">
+  <div class="breadcrumb"><a class="cap item" href="/categories/%e5%bb%ba%e7%ab%99">建站</a>
+      <span class="sep"> </span>
+      <span class="sep">|</span><a class="cap item" href="/tags/hugo">Hugo</a>
+      <span class="sep"> </span></div>
+  <span class="post-meta">发布于 2023-2-12</span>
+</div>
+
+<article class="md-text content post">
+  <h1 class="article-title">扩展语法支持</h1><blockquote class="description">Hugo Stellar 扩展语法补丁。</blockquote><section></section>
+<h2 id="#mkdocs-语法">
+    MkDocs 语法
+    <a class="anchor" name="mkdocs-语法" href="#mkdocs-%e8%af%ad%e6%b3%95">#</a>
+</h2>
+<section id="#mkdocs-语法"></section>
+<h3 id="#hint">
+    Hint
+    <a class="anchor" name="hint" href="#hint">#</a>
+</h3>
+<section id="#hint"><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Hint 允许包含和嵌套任意内容。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">???+ bug
+</span></span><span class="line"><span class="cl">    ???+ bug
+</span></span><span class="line"><span class="cl">        ???+ bug
+</span></span><span class="line"><span class="cl">            Nested bugs.</span></span></code></pre></div><p>MkDocs 一共支持 12 种 Hint。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</section>
+<h3 id="#columns">
+    Columns
+    <a class="anchor" name="columns" href="#columns">#</a>
+</h3>
+<section id="#columns"><p>Columns 用于并排显示某些内容（在较窄的屏幕上会自动取消 Columns 效果）。</p>
+<p>通过 HTML 注释 <code>&lt;!--  --&gt;</code> 将不同的 Columns 隔开。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">:::
+</span></span><span class="line"><span class="cl">    !!! note Top Left
+</span></span><span class="line"><span class="cl">        <span class="sb">`markdown`</span> text
+</span></span><span class="line"><span class="cl">:::
+</span></span><span class="line"><span class="cl">    !!! note Top Right
+</span></span><span class="line"><span class="cl">        <span class="sb">`markdown`</span> text
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--  --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">:::
+</span></span><span class="line"><span class="cl">    !!! note Bottom Left
+</span></span><span class="line"><span class="cl">        <span class="sb">`markdown`</span> text
+</span></span><span class="line"><span class="cl">:::
+</span></span><span class="line"><span class="cl">    !!! note Bottom Right
+</span></span><span class="line"><span class="cl">        <span class="sb">`markdown`</span> text</span></span></code></pre></div></section>
+<h3 id="#tabs">
+    Tabs
+    <a class="anchor" name="tabs" href="#tabs">#</a>
+</h3>
+<section id="#tabs"><p>Tabs 用于呈现选项卡效果，允许包含和嵌套任意内容。</p>
+<p>当 Tab 没有内容时，对应的选项卡将不可点击。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">=== Disabled
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== Tab 1
+</span></span><span class="line"><span class="cl">    !!! tip
+</span></span><span class="line"><span class="cl">        This is Tab 1.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== Tab 2
+</span></span><span class="line"><span class="cl">    !!! warning
+</span></span><span class="line"><span class="cl">        This is Tab 2.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">=== Tab 3
+</span></span><span class="line"><span class="cl">    !!! danger
+</span></span><span class="line"><span class="cl">        This is Tab 3.</span></span></code></pre></div></section>
+<h2 id="#stellar-语法">
+    Stellar 语法
+    <a class="anchor" name="stellar-语法" href="#stellar-%e8%af%ad%e6%b3%95">#</a>
+</h2>
+<section id="#stellar-语法"></section>
+<h3 id="#inline">
+    Inline
+    <a class="anchor" name="inline" href="#inline">#</a>
+</h3>
+<section id="#inline"></section>
+<h4 id="#note">
+    Note
+    <a class="anchor" name="note" href="#note">#</a>
+</h4>
+<section id="#note"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% note Title <span class="sb">`Markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% note color:red Title <span class="sb">`Markdown`</span> text %}
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 使用 &#34;&amp;nbsp;&#34; 在标题中呈现空格 --&gt;</span>
+</span></span><span class="line"><span class="cl">{% note color:blue Hello<span class="ni">&amp;nbsp;</span>World <span class="sb">`Markdown`</span> text %}</span></span></code></pre></div><p>Note 一共支持 12 种颜色。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</section>
+<h4 id="#mark">
+    Mark
+    <a class="anchor" name="mark" href="#mark">#</a>
+</h4>
+<section id="#mark"><p>Mark 和 <a class="md-link" href="#note"  >Note<img class="icon" src="/img/link.svg" /></a> 一样支持 12 种颜色。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% mark Default %}
+</span></span><span class="line"><span class="cl">{% mark color:blue Blue %}
+</span></span><span class="line"><span class="cl">{% mark color:green Green %}</span></span></code></pre></div></section>
+<h4 id="#tag">
+    Tag
+    <a class="anchor" name="tag" href="#tag">#</a>
+</h4>
+<section id="#tag"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% tag GitHub https://github.com/ %}
+</span></span><span class="line"><span class="cl">{% tag color:blue Hexo https://hexo.io/ %}
+</span></span><span class="line"><span class="cl">{% tag color:green W3Schools https://www.w3schools.com/ %}</span></span></code></pre></div></section>
+<h4 id="#copy">
+    Copy
+    <a class="anchor" name="copy" href="#copy">#</a>
+</h4>
+<section id="#copy"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% copy sudo apt-get upgrade %}
+</span></span><span class="line"><span class="cl">{% copy sudo ubuntu-drivers autoinstall %}</span></span></code></pre></div></section>
+<h4 id="#radio">
+    Radio
+    <a class="anchor" name="radio" href="#radio">#</a>
+</h4>
+<section id="#radio"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% radio <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% radio checked:true <span class="sb">`markdown`</span> text %}</span></span></code></pre></div></section>
+<h4 id="#checkbox">
+    Checkbox
+    <a class="anchor" name="checkbox" href="#checkbox">#</a>
+</h4>
+<section id="#checkbox"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% checkbox <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% checkbox checked:true <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% checkbox symbol:plus color:green checked:true <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% checkbox symbol:minus color:yellow checked:true <span class="sb">`markdown`</span> text %}
+</span></span><span class="line"><span class="cl">{% checkbox symbol:times color:red checked:true <span class="sb">`markdown`</span> text %}</span></span></code></pre></div></section>
+<h3 id="#display">
+    Display
+    <a class="anchor" name="display" href="#display">#</a>
+</h3>
+<section id="#display"></section>
+<h4 id="#folding">
+    Folding
+    <a class="anchor" name="folding" href="#folding">#</a>
+</h4>
+<section id="#folding"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% folding Title open:true color:blue %}
+</span></span><span class="line"><span class="cl"><span class="sb">`Markdown`</span> text
+</span></span><span class="line"><span class="cl">{% endfolding %}</span></span></code></pre></div><p>Folding 允许包含和嵌套任意内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% folding Warning color:yellow %}
+</span></span><span class="line"><span class="cl">{% folding Dangerous color:orange %}
+</span></span><span class="line"><span class="cl">{% folding Prohibited color:red %}
+</span></span><span class="line"><span class="cl"><span class="sb">`Markdown`</span> text
+</span></span><span class="line"><span class="cl">{% endfolding %}
+</span></span><span class="line"><span class="cl">{% endfolding %}
+</span></span><span class="line"><span class="cl">{% endfolding %}</span></span></code></pre></div></section>
+<h4 id="#poetry">
+    Poetry
+    <a class="anchor" name="poetry" href="#poetry">#</a>
+</h4>
+<section id="#poetry"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{% poetry 独不见 author:唐·沈佺期 footer:诗词节选 %}
+</span></span><span class="line"><span class="cl">卢家少妇郁金堂，海燕双栖玳瑁梁。
+</span></span><span class="line"><span class="cl"><span class="gs">**九月寒砧催木叶，十年征戍忆辽阳。**</span>
+</span></span><span class="line"><span class="cl">白狼河北音书断，丹凤城南秋夜长。
+</span></span><span class="line"><span class="cl">谁为含愁独不见，更教明月照流黄？
+</span></span><span class="line"><span class="cl">{% endpoetry %}</span></span></code></pre></div></section>
+</article><div class="float-panel mobile-only blur" style="display:none">
+  <button type="button" class="sidebar-toggle" onclick="float_panel_click()">
+    <svg class="icon" style="width:1em;height:1em;vertical-align:middle;fill:currentColor;overflow:hidden" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301">
+      <path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path>
+      <path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path>
+    </svg>
+  </button>
+  <script>
+    float_panel_click = () => {
+      document.getElementById("start").classList.toggle("mobile");
+      document.getElementsByClassName("sidebar-toggle")[0].classList.toggle("mobile");
+    }
+  </script>
+</div></main>
+    </div>
+</body><script src="/scripts/tableOfContents.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.9/MathJax.js" defer></script>
+
+
+
+
+<script src="/scripts/mathjax.js"></script>
+</html>

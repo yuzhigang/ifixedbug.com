@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><title>About - www.ifixedbug.com</title><meta charset="utf-8">
+<html lang="en"><head><title>Getting Started with Hugo - www.ifixedbug.com</title><meta charset="utf-8">
     <meta name="author" content="">
     <meta name="Robots" content="All">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,12 +52,15 @@
     </script>
 </widget></div><div class="widget toc"><widgets class="widget-wrapper toc">
     <div class="widget-header cap dis-select">
-        <a class="name" href="#">About</a>
+        <a class="name" href="#">Getting Started with Hugo</a>
     </div>
     <div class="widget-body fs14">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#about-hugo">About Hugo</a></li>
+    <li><a href="#step-1-install-hugo">Step 1. Install Hugo</a></li>
+    <li><a href="#step-2-build-the-docs">Step 2. Build the Docs</a></li>
+    <li><a href="#step-3-change-the-docs-site">Step 3. Change the docs site</a></li>
+    <li><a href="#step-4-have-fun">Step 4. Have fun</a></li>
   </ul>
 </nav>
     </div>
@@ -78,26 +81,80 @@
           <div class="sub hover cap"></div>
       </a>
   </div>
-</header><h1 class="article-title">About</h1>
+</header><div class="bread-nav fs14">
+  <div class="breadcrumb"><a class="cap item" href="/categories/%e5%bb%ba%e7%ab%99">建站</a>
+      <span class="sep"> </span>
+      <span class="sep">|</span><a class="cap item" href="/tags/hugo">hugo</a>
+      <span class="sep"> </span></div>
+  <span class="post-meta">发布于 2023-2-12</span>
+</div>
+
 <article class="md-text content post">
-  <span class="description"></span></section>
-<h2 id="#about-hugo">
-    About Hugo
-    <a class="anchor" name="about-hugo" href="#about-hugo">#</a>
+  <h1 class="article-title">Getting Started with Hugo</h1><section></section>
+<h2 id="#step-1-install-hugo">
+    Step 1. Install Hugo
+    <a class="anchor" name="step-1-install-hugo" href="#step-1-install-hugo">#</a>
 </h2>
-<section id="#about-hugo"><p>Written in Go, Hugo is an open source static site generator available under the <a class="md-link" href="https://github.com/gohugoio/hugo/blob/master/LICENSE"  >Apache Licence 2.0.<img class="icon" src="/img/link.svg" /></a> Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.</p>
-<p>Hugo makes use of a variety of open source projects including:</p>
-<ul>
-<li><a class="md-link" href="https://github.com/russross/blackfriday"  >https://github.com/russross/blackfriday<img class="icon" src="/img/link.svg" /></a></li>
-<li><a class="md-link" href="https://github.com/alecthomas/chroma"  >https://github.com/alecthomas/chroma<img class="icon" src="/img/link.svg" /></a></li>
-<li><a class="md-link" href="https://github.com/muesli/smartcrop"  >https://github.com/muesli/smartcrop<img class="icon" src="/img/link.svg" /></a></li>
-<li><a class="md-link" href="https://github.com/spf13/cobra"  >https://github.com/spf13/cobra<img class="icon" src="/img/link.svg" /></a></li>
-<li><a class="md-link" href="https://github.com/spf13/viper"  >https://github.com/spf13/viper<img class="icon" src="/img/link.svg" /></a></li>
-</ul>
-<p>Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.</p>
-<p>Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.</p>
-<p>Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.</p>
-<p>Learn more and contribute on <a class="md-link" href="https://github.com/gohugoio"  >GitHub<img class="icon" src="/img/link.svg" /></a>.</p>
+<section id="#step-1-install-hugo"><p>Go to <a class="md-link" href="https://github.com/spf13/hugo/releases"  >Hugo releases<img class="icon" src="/img/link.svg" /></a> and download the
+appropriate version for your OS and architecture.</p>
+<p>Save it somewhere specific as we will be using it in the next step.</p>
+<p>More complete instructions are available at <a class="md-link" href="https://gohugo.io/getting-started/installing/"  >Install Hugo<img class="icon" src="/img/link.svg" /></a></p>
+</section>
+<h2 id="#step-2-build-the-docs">
+    Step 2. Build the Docs
+    <a class="anchor" name="step-2-build-the-docs" href="#step-2-build-the-docs">#</a>
+</h2>
+<section id="#step-2-build-the-docs"><p>Hugo has its own example site which happens to also be the documentation site
+you are reading right now.</p>
+<p>Follow the following steps:</p>
+<ol>
+<li>Clone the <a class="md-link" href="http://github.com/spf13/hugo"  >Hugo repository<img class="icon" src="/img/link.svg" /></a></li>
+<li>Go into the repo</li>
+<li>Run hugo in server mode and build the docs</li>
+<li>Open your browser to http://localhost:1313</li>
+</ol>
+<p>Corresponding pseudo commands:</p>
+<pre tabindex="0"><code>git clone https://github.com/spf13/hugo
+cd hugo
+/path/to/where/you/installed/hugo server --source=./docs
+&gt; 29 pages created
+&gt; 0 tags index created
+&gt; in 27 ms
+&gt; Web Server is available at http://localhost:1313
+&gt; Press ctrl+c to stop</code></pre><p>Once you&rsquo;ve gotten here, follow along the rest of this page on your local build.</p>
+</section>
+<h2 id="#step-3-change-the-docs-site">
+    Step 3. Change the docs site
+    <a class="anchor" name="step-3-change-the-docs-site" href="#step-3-change-the-docs-site">#</a>
+</h2>
+<section id="#step-3-change-the-docs-site"><p>Stop the Hugo process by hitting Ctrl+C.</p>
+<p>Now we are going to run hugo again, but this time with hugo in watch mode.</p>
+<pre tabindex="0"><code>/path/to/hugo/from/step/1/hugo server --source=./docs --watch
+&gt; 29 pages created
+&gt; 0 tags index created
+&gt; in 27 ms
+&gt; Web Server is available at http://localhost:1313
+&gt; Watching for changes in /Users/spf13/Code/hugo/docs/content
+&gt; Press ctrl+c to stop</code></pre><p>Open your <a class="md-link" href="http://vim.spf13.com"  >favorite editor<img class="icon" src="/img/link.svg" /></a> and change one of the source
+content pages. How about changing this very file to <em>fix the typo</em>. How about changing this very file to <em>fix the typo</em>.</p>
+<p>Content files are found in <code>docs/content/</code>. Unless otherwise specified, files
+are located at the same relative location as the url, in our case
+<code>docs/content/overview/quickstart.md</code>.</p>
+<p>Change and save this file.. Notice what happened in your terminal.</p>
+<pre tabindex="0"><code>&gt; Change detected, rebuilding site
+
+&gt; 29 pages created
+&gt; 0 tags index created
+&gt; in 26 ms</code></pre><p>Refresh the browser and observe that the typo is now fixed.</p>
+<p>Notice how quick that was. Try to refresh the site before it&rsquo;s finished building. I double dare you.
+Having nearly instant feedback enables you to have your creativity flow without waiting for long builds.</p>
+</section>
+<h2 id="#step-4-have-fun">
+    Step 4. Have fun
+    <a class="anchor" name="step-4-have-fun" href="#step-4-have-fun">#</a>
+</h2>
+<section id="#step-4-have-fun"><p>The best way to learn something is to play with it.</p>
+</section>
 </article><div class="float-panel mobile-only blur" style="display:none">
   <button type="button" class="sidebar-toggle" onclick="float_panel_click()">
     <svg class="icon" style="width:1em;height:1em;vertical-align:middle;fill:currentColor;overflow:hidden" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301">

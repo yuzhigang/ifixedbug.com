@@ -2,22 +2,65 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.ifixedbug.com/</loc>
-    <lastmod>2024-04-05T10:06:12+08:00</lastmod>
-  </url><url>
     <loc>https://www.ifixedbug.com/post/</loc>
     <lastmod>2024-04-05T10:06:12+08:00</lastmod>
   </url><url>
-    <loc>https://www.ifixedbug.com/docs/</loc>
+    <loc>https://www.ifixedbug.com/</loc>
+    <lastmod>2024-04-05T10:06:12+08:00</lastmod>
   </url><url>
     <loc>https://www.ifixedbug.com/posts/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/posts/goisforlovers/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/categories/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/posts/hugoisforlovers/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/tags/go/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/tags/hugo/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/tags/mathjax/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/posts/mathjax%E6%94%AF%E6%8C%81/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/tags/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/categories/%E5%BB%BA%E7%AB%99/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/posts/%E6%89%A9%E5%B1%95%E8%AF%AD%E6%B3%95%E6%94%AF%E6%8C%81/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.ifixedbug.com/docs/</loc>
   </url><url>
     <loc>https://www.ifixedbug.com/archives/</loc>
   </url><url>
-    <loc>https://www.ifixedbug.com/categories/</loc>
+    <loc>https://www.ifixedbug.com/about/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/docs/example/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/docs/example/folder_1/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/docs/example/folder_2/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/docs/example/nest_folders/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/docs/example/nest_folders/nest_folders/</loc>
+  </url><url>
+    <loc>https://www.ifixedbug.com/docs/example/nest_folders/nest_folders/nest_folders/</loc>
   </url><url>
     <loc>https://www.ifixedbug.com/search/</loc>
   </url><url>
-    <loc>https://www.ifixedbug.com/tags/</loc>
+    <loc>https://www.ifixedbug.com/docs/example/folder_1/text/</loc>
   </url>
 </urlset>
