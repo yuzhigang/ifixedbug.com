@@ -686,7 +686,7 @@ h6 {
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.01);
+      background: rgba(0, 0, 0, 0.1);
       z-index: 5;
       transition: opacity .2s ease-out; }
     .LBody .LMain > .post-list > .archive-group {
