@@ -609,7 +609,8 @@ h6 {
           top: -2px;
           padding-top: 2px;
           background: var(--site-bg);
-          z-index: 1; }
+          z-index: 1;
+          margin: 0 15px; }
           .LBody .LSide > .widgets > .widget > .widget-wrapper > .widget-header > .name {
             margin: 0.25rem 0;
             text-align: left; }
