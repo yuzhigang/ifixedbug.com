@@ -343,7 +343,8 @@ h6 {
     width: var(--width-left);
     flex-shrink: 0;
     position: sticky;
-    top: 0; }
+    top: 0;
+    background-image: linear-gradient(to right, #e0eafc, #cfdef3); }
   .LBody > .LMain {
     flex-shrink: 1;
     flex-grow: 1;
