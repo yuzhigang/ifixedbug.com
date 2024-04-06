@@ -873,7 +873,6 @@ h6 {
           display: block;
           position: relative;
           width: 50px;
-          height: 50px;
           flex-shrink: 0;
           border-radius: 50px;
           overflow: hidden;
@@ -882,8 +881,6 @@ h6 {
             margin: 2px;
             object-fit: cover;
             width: calc(100% - 2 * 2px);
-            height: calc(100% - 2 * 2px);
-            border-radius: calc(100% - 2 * 2px);
             will-change: transform; }
           .LBody .LMain > .header > .logo-wrap > .avatar div.mask,
           .LBody .LMain > .header > .logo-wrap > .avatar div.bg {
@@ -892,8 +889,7 @@ h6 {
             background-size: cover;
             position: absolute; }
           .LBody .LMain > .header > .logo-wrap > .avatar div.mask {
-            z-index: -1;
-            background-color: #e9eaec; }
+            z-index: -1; }
           .LBody .LMain > .header > .logo-wrap > .avatar div.bg {
             transition: opacity 0.15s ease-out;
             -moz-transition: opacity 0.15s ease-out;
