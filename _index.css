@@ -343,7 +343,6 @@ h6 {
     width: var(--width-left);
     flex-shrink: 0;
     position: sticky;
-    position: -webkit-sticky;
     top: 0;
     background: var(--blur-bg);
     backdrop-filter: saturate(240%) blur(var(--blur-px)); }
