@@ -24,7 +24,7 @@ html, input, code {
 
 :root {
   --blur-px: 12px;
-  --blur-bg: rgba(255, 255, 255, 0.5);
+  --blur-bg: rgba(255, 255, 255, 0.6);
   --shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   --shadow-light: 0 2px 8px 0 rgba(0, 0, 0, 0.02);
   --shadow-hover: 0 0 2px 0 rgba(0, 0, 0, 0.04), 0 0 8px 0 rgba(0, 0, 0, 0.04);
