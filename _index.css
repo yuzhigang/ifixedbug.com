@@ -415,7 +415,7 @@ h6 {
             object-fit: cover;
             width: calc(100% - 2 * 2px);
             will-change: transform;
-            animation: spin 20s linear infinite; }
+            animation: spin 10s linear infinite; }
           .LBody .LSide > .header > .logo-wrap > .avatar div.mask,
           .LBody .LSide > .header > .logo-wrap > .avatar div.bg {
             width: 100%;
