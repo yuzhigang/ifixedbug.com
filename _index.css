@@ -344,7 +344,9 @@ h6 {
     flex-shrink: 0;
     position: sticky;
     position: -webkit-sticky;
-    top: 0; }
+    top: 0;
+    background: var(--blur-bg);
+    backdrop-filter: saturate(240%) blur(var(--blur-px)); }
   .LBody > .LMain {
     flex-shrink: 1;
     flex-grow: 1;
